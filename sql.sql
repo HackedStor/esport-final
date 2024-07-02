@@ -1,0 +1,15 @@
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('a','a','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('b','b','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('c','c','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('d','d','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('f','f','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('g','g','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('h','h','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('i','i','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('j','j','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('k','k','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('l','l','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('m','m','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('n','n','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('o','o','TSTI1','2024-02-28');
+INSERT INTO `crn1`(`nom`, `prenom`, `classe`, `date`) VALUES ('p','p','TSTI1','2024-02-28');

@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital@0;1&display=swap');
+:root {
+    --width-of-input: 200px;
+    --border-height: 1px;
+    --border-before-color: rgba(221, 221, 221, 0.39);
+    --border-after-color: #5891ff;
+    --input-hovered-color: #4985e01f;
+}
+body {
+    margin: 0;
+    font-family: 'Inclusive Sans', sans-serif;
+    background-color: #212121;
+    color: white;
+}
+.container {
+    height: 99vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vh;
+}
+.mydiv {
+    width: 20%;
+}
+.form_container {
+    padding: 15px;
+    border-radius: 3px;
+    background-color: #212121;
+    border: 1px solid #3f3c3c;
+}
+.form_control {
+    display: flex;
+    justify-content: space-between;
+    gap: 5%;
+}
+.form {
+    position: relative;
+    margin-bottom: 1vh;
+    border-left: none;
+}
+   /* styling of Input */
+.input {
+        color: #fff;
+        font-size: 0.9rem;
+        background-color: transparent;
+        width: 100%;
+        box-sizing: border-box;
+        padding-inline: 0.5em;
+        padding-block: 0.7em;
+        margin-top: .9vh;
+        border-bottom: var(--border-height) solid var(--border-before-color);
+        border-right: none;
+        border-left: none;
+}
+   /* styling of animated border */
+.input-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0px;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 0.4s;
+}
+.option {
+    background-color: #212121;
+}
+   /* Hover on Input */
+input:hover {
+    background: var(--input-hovered-color);
+}
+textarea {
+    resize: none;
+    border: none;
+}
+textarea:hover {
+    background-color: var(--input-hovered-color);
+}
+textarea:focus {
+    outline: none;
+    border: none;
+}
+input:focus {
+    outline: none;
+    border: none;
+}
+   /* here is code of animated border */
+input:focus ~ .input-border {
+    width: 100%;
+}
+textarea:focus ~ .input-border {
+    width: 100%;
+}
+.submit_control {
+    display: flex;
+    justify-content: center;
+}
+.submit {
+    padding: 6px 15px;
+    background-color: #212121;
+    color: white;
+    font-weight: 900;
+    font-size: 15px;
+    border: 1px solid;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.submit:hover {
+    background-color: #3f3c3c;
+}
