@@ -1,0 +1,6 @@
+.AuthSection {
+    display: flex;
+}
+.AuthSection .cus_container .form_container h1 {
+    text-align: center;
+}

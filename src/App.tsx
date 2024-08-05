@@ -1,21 +1,15 @@
-import { Button } from './components/ui/button';
-import { Component } from './myComponent';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import './assets/css/nav.css';
+import './index.css';
+import AppContent from './components/pages/AppContent';
 
-
-
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-      <div className='bg-background h-screen flex flex-col items-center gap-52'>
-        <Button variant="default" className='w-min'>Click me</Button>
-        <Button variant="outline" className='w-min'>Button</Button>
-        <div className="w-1/2">
-          <Component />
-        </div>
-      </div>
-    </>
-  )
-}
+    <Router>
+      <AppContent />
+    </Router>
+  );
+};
 
-export default App
+export default App;

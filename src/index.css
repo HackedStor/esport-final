@@ -61,3 +61,75 @@
     --chart-5: 340 75% 55%;
   }
 }
+   
+@font-face {
+  font-family: 'ClashDisplay-Extralight';
+  src: url('../font/ClashDisplay-Extralight.woff2') format('woff2'),
+       url('../font/ClashDisplay-Extralight.woff') format('woff'),
+       url('../font/ClashDisplay-Extralight.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ClashDisplay-Light';
+  src: url('../font/ClashDisplay-Light.woff2') format('woff2'),
+       url('../font/ClashDisplay-Light.woff') format('woff'),
+       url('../font/ClashDisplay-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ClashDisplay-Regular';
+  src: url('../font/ClashDisplay-Regular.woff2') format('woff2'),
+       url('../font/ClashDisplay-Regular.woff') format('woff'),
+       url('../font/ClashDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ClashDisplay-Medium';
+  src: url('../font/ClashDisplay-Medium.woff2') format('woff2'),
+       url('../font/ClashDisplay-Medium.woff') format('woff'),
+       url('../font/ClashDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ClashDisplay-Semibold';
+  src: url('../font/ClashDisplay-Semibold.woff2') format('woff2'),
+       url('../font/ClashDisplay-Semibold.woff') format('woff'),
+       url('../font/ClashDisplay-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ClashDisplay-Bold';
+  src: url('../font/ClashDisplay-Bold.woff2') format('woff2'),
+       url('../font/ClashDisplay-Bold.woff') format('woff'),
+       url('../font/ClashDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 700.0;
+*
+* available axes:
+'wght' (range from 200.0 to 700.0
+*/
+@font-face {
+  font-family: 'ClashDisplay-Variable';
+  src: url('../font/ClashDisplay-Variable.woff2') format('woff2'),
+       url('../font/ClashDisplay-Variable.woff') format('woff'),
+       url('../font/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
