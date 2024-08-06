@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../../assets/css/reservation.css";
+import "../../assets/css/login.css";
 import Input from './Input';
 import Button from './Button';
 import Notification from './Notification';
@@ -58,7 +58,7 @@ const FormAuth: React.FC = () => {
     <div className='AuthSection'>
       <div className="cus_container">
         <form className="form_container" method="post" onSubmit={(e) => handleSubmit(e, 'http://esport/src/php/Auth/register.php')}>
-          <h1 className='text-4xl my-5'>Inscription</h1>
+          <h1 className='text-4xl my-5 register-button'>Inscription</h1>
           <div className="form_control">
             <Input
               htmlFor="Email"
@@ -91,7 +91,7 @@ const FormAuth: React.FC = () => {
       </div>
       <div className="cus_container">
         <form className="form_container" method="post" onSubmit={(e) => handleSubmit(e, 'http://esport/src/php/Auth/login.php')}>
-          <h1 className='text-4xl my-5'>Connexion</h1>
+          <h1 className='text-4xl my-5 login-button'>Connexion</h1>
           <Input
             htmlFor="Email"
             labelValue="Email"
