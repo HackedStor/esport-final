@@ -1,9 +1,10 @@
-import React, { useState, FormEvent } from 'react';
+import React, { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../../assets/css/login.css";
 import Input from './Input';
 import Button from './Button';
-import Notification from './Notification';
+import toast, { Renderable, Toast, Toaster, ValueFunction } from 'react-hot-toast';
+
 
 type FormData = {
   Email: string;
@@ -12,7 +13,6 @@ type FormData = {
 };
 
 const FormAuth: React.FC = () => {
-  const [notification, setNotification] = useState<string>('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent, url: string) => {
@@ -37,22 +37,25 @@ const FormAuth: React.FC = () => {
       const result = await response.json();
 
       if (url.includes('register')) {
-        setNotification(result.message || result.error || result.success);
+        notify_ok(result.message || result.error || result.success);
       } else {
         if (result.success) {
           localStorage.setItem('email', result.email);
           localStorage.setItem('is_admin', result.is_admin);
-          setNotification(result.message);
+          notify_ok(result.message);
           navigate(result.redirectUrl);
         } else {
-          setNotification(result.message);
+          notify_ok(result.message);
         }
       }
     } catch (error) {
       console.error("Une erreur s'est produite :", error);
-      setNotification("Une erreur s'est produite lors de l'envoi du formulaire.");
+      notify_err("Une erreur s'est produite lors de l'envoi du formulaire.");
     }
   };
+
+  const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.success(text)
+  const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.error(text)
 
   return (
     <div className='AuthSection'>
@@ -113,7 +116,7 @@ const FormAuth: React.FC = () => {
           />
         </form>
       </div>
-      {notification && <Notification message={notification} onClose={() => setNotification('')} />}
+      <Toaster />
     </div>
   );
 };

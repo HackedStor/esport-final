@@ -4,8 +4,9 @@ import Input from "./Input";
 import SelectInputH from "./SelectInputH";
 import SelectInputDate from "./SelectInputDate";
 import Button from "./Button";
-import Notification from "./Notification";
 import "../../assets/css/reservation.css";
+import toast, { Renderable, Toast, Toaster, ValueFunction } from 'react-hot-toast';
+
 
 interface Option {
   value: string;
@@ -50,8 +51,6 @@ function FormReservation() {
   const [selectedDate, setSelectedDate] = useState<string>(
     optionsDate[0].value
   );
-  const [notification, setNotification] = useState<string>("");
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -71,10 +70,10 @@ function FormReservation() {
       }
 
       const result = await response.json();
-      setNotification(result.message);
+      notify_ok(result.message);
     } catch (error) {
       console.error("There was an error:", error);
-      setNotification("There was an error submitting the form.");
+      notify_err("There was an error submitting the form.");
     }
   };
 
@@ -84,7 +83,7 @@ function FormReservation() {
         const response = await fetch(
           "http://esport/src/php/ajax/getHoraires.php",
           {
-            method: "POST",
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
@@ -108,6 +107,9 @@ function FormReservation() {
 
     fetchHoraires(selectedDate);
   }, [selectedDate]);
+
+  const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.success(text)
+  const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.error(text)
 
   return (
     <div>
@@ -149,12 +151,7 @@ function FormReservation() {
         />
         <Button type="submit" classValue="submit" text="Réserver" />
       </form>
-      {notification && (
-        <Notification
-          message={notification}
-          onClose={() => setNotification("")}
-        />
-      )}
+      <Toaster />
     </div>
   );
 }
