@@ -141,10 +141,6 @@ textarea:focus ~ .input-border {
   background-color: #3f3c3c;
 }
 
-.login-button {
-  margin-bottom: 113px;
-}
-
 /* Style pour les écrans de 800px ou moins */
 @media (max-width: 1160px) {
   .cus_container {
