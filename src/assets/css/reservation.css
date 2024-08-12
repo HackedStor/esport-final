@@ -19,6 +19,16 @@ body {
   justify-content: space-between;
   margin-top: 100px;
 }
+.cus_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6vh;
+  padding: 15px;
+  border: 1px solid #3f3c3c;
+  border-radius: 8px;
+}
 
 .cus_container {
   display: flex;
@@ -27,6 +37,17 @@ body {
   align-items: center;
   gap: 6vh;
   padding: 15px;
+  border: 1px solid #3f3c3c;
+  border-radius: 8px;
+}
+.cus_container_res {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6vh;
+  padding: 15px;
+  margin-top: 70px;
   border: 1px solid #3f3c3c;
   border-radius: 8px;
 }
@@ -145,8 +166,20 @@ textarea:focus ~ .input-border {
   margin-bottom: 113px;
 }
 
-/* Style pour les écrans de 800px ou moins */
+/* Style pour les écrans de 1160px ou moins */
 @media (max-width: 1160px) {
+  .cus_container_res {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6vh;
+    padding: 15px;
+    margin-top: 30px;
+    border: 1px solid #3f3c3c;
+    border-radius: 8px;
+  }
+  
   .cus_container {
     flex-direction: column;
   }
