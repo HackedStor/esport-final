@@ -112,21 +112,22 @@ function FormReservation() {
   return (
     <div>
       <form className="form_container" method="post" onSubmit={handleSubmit}>
-        <Input
-          htmlFor="nom"
-          labelValue="Nom"
-          InputName="nom"
-          InputId="nom"
-          type="text"
-        />
-        <Input
-          htmlFor="prenom"
-          labelValue="Prénom"
-          InputName="prenom"
-          InputId="prenom"
-          type="text"
-        />
-
+        <div className="form_control">
+          <Input
+            htmlFor="nom"
+            labelValue="Nom"
+            InputName="nom"
+            InputId="nom"
+            type="text"
+          />
+          <Input
+            htmlFor="prenom"
+            labelValue="Prénom"
+            InputName="prenom"
+            InputId="prenom"
+            type="text"
+          />
+        </div>
         <Input
           htmlFor="classe"
           labelValue="Classe"

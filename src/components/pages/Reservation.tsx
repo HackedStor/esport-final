@@ -5,9 +5,11 @@ import "../../assets/css/reservation.css"
 
 const Reservation: React.FC = () => {
   return (
+    <div className='container'>
     <div className="cus_container_res">
         <TitleInscription />
         <FormReservation />
+    </div>
     </div>
   );
 }

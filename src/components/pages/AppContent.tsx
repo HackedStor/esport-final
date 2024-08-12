@@ -31,7 +31,6 @@ const AppContent: React.FC = () => {
           </ul>
         </nav>
       )}
-      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/reservation" element={<Reservation />} />
@@ -50,7 +49,6 @@ const AppContent: React.FC = () => {
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>
-    </div>
   );
 };
 

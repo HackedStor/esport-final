@@ -3,7 +3,7 @@
 //////////////////////*/
 
 .hero {
-    background: url('http://esport/src/img/hero-bg.jpg') no-repeat center center;
+    background: url('/src/assets/img/fond-armateam.png') no-repeat center center;
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -13,8 +13,7 @@
 }
 
 .hero .card {
-    background-color: #212121;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     width: 25vw;
     padding: 2vh 1vw;
     margin-left: 5%;
@@ -112,3 +111,6 @@
     text-decoration: underline;
   }
   
+  .title-1, .title-2, .title-3, .title-4, .title-5 {
+    font-size: 40px;
+  }
