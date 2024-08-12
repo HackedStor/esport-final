@@ -1,4 +1,3 @@
-// SelectInputH.tsx
 import React from 'react';
 
 interface Option {

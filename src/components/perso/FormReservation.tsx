@@ -5,8 +5,12 @@ import SelectInputH from "./SelectInputH";
 import SelectInputDate from "./SelectInputDate";
 import Button from "./Button";
 import "../../assets/css/reservation.css";
-import toast, { Renderable, Toast, Toaster, ValueFunction } from 'react-hot-toast';
-
+import toast, {
+  Renderable,
+  Toast,
+  Toaster,
+  ValueFunction,
+} from "react-hot-toast";
 
 interface Option {
   value: string;
@@ -97,7 +101,10 @@ function FormReservation() {
 
         const data = await response.json();
         setHoraires(
-          data.map((horaire: string) => ({ value: horaire, label: horaire }))
+          data.map((horaire: { id: string; horaire: string }) => ({
+            value: horaire.id,
+            label: horaire.horaire,
+          }))
         );
         console.log(data);
       } catch (error) {
@@ -108,8 +115,10 @@ function FormReservation() {
     fetchHoraires(selectedDate);
   }, [selectedDate]);
 
-  const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.success(text)
-  const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.error(text)
+  const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+    toast.success(text);
+  const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+    toast.error(text);
 
   return (
     <div>
