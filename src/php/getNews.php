@@ -11,7 +11,11 @@ try {
     $stmt->execute();
     $news = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($news);
+    if (count($news) == 0) {
+        echo json_encode(['message' => 'Pas d\'annonces disponibles']);
+    } else {
+        echo json_encode($news);
+    }
 } catch(PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }
