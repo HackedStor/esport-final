@@ -7,7 +7,7 @@ header("Content-Type: application/json");
 require_once 'config/config.php';
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM actus WHERE is_visible = 1 ORDER BY date DESC");
+    $stmt = $conn->prepare("SELECT * FROM actus ORDER BY date DESC");
     $stmt->execute();
     $news = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

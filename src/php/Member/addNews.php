@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Accept");
@@ -20,21 +20,23 @@ try {
         $fileExtension = strtolower(end($fileNameCmps));
 
         // Définir le chemin de destination
-        $uploadFileDir = '../../assets/img/actus/';
+        // Assurez-vous que ce chemin est correct selon votre structure côté serveur
+        $uploadFileDir = '../../actus/';
         $dest_path = $uploadFileDir . $fileName;
 
         // Déplacer le fichier téléchargé vers le répertoire de destination
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            $imagePath = 'src/img/actus/' . $fileName;
+            // Chemin relatif à partir de la racine du projet frontend
+            $imagePath = '/src/actus/' . $fileName;
 
             // Lire les autres données envoyées
             $title = $_POST['title'];
             $description = $_POST['description'];
             $link = $_POST['link'];
             $date = $_POST['date'];
-
+            $is_visible = 1;
             // Préparer la requête d'insertion
-            $sql = "INSERT INTO actus (image, title, description, link, date) VALUES (:image, :title, :description, :link, :date)";
+            $sql = "INSERT INTO actus (image, title, description, link, date, is_visible) VALUES (:image, :title, :description, :link, :date, :is_visible)";
             $stmt = $conn->prepare($sql);
 
             // Lier les paramètres
@@ -43,6 +45,7 @@ try {
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':link', $link);
             $stmt->bindParam(':date', $date);
+            $stmt->bindParam(':is_visible', $is_visible);
 
             // Exécuter la requête
             if ($stmt->execute()) {

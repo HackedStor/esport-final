@@ -17,9 +17,12 @@ const CustomCard: React.FC<CardProps> = ({ image, title, description, link, date
         <h2 className="news-card__title">{title}</h2>
         <p className="news-card__date">{date}</p>
         <p className="news-card__description">{description}</p>
+      </div>
+      <div className="news-card__footer">
         <a href={link} className="news-card__link">Lire la suite</a>
       </div>
     </div>
+
   );
 };
 
