@@ -55,31 +55,41 @@ function FormReservation() {
   const [selectedDate, setSelectedDate] = useState<string>(
     optionsDate[0].value
   );
+  
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
     try {
-      const response = await fetch(
-        "http://esport/src/php/Reservation/reservation.php",
-        {
-          method: "POST",
-          body: formData,
+        const response = await fetch(
+            "http://esport/src/php/Reservation/reservation.php",
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP ! statut : ${response.status}`);
         }
-      );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+        // Inspectez la réponse en tant que texte
+        const responseText = await response.text();
+        // Essayez ensuite de la convertir en JSON
+        try {
+            const result = JSON.parse(responseText);
+            notify_ok(result.message);
+        } catch (jsonError) {
+            console.error("Erreur lors du parsing du JSON :", jsonError);
+            notify_err("La réponse du serveur n'est pas au format JSON attendu.");
+        }
 
-      const result = await response.json();
-      notify_ok(result.message);
     } catch (error) {
-      console.error("There was an error:", error);
-      notify_err("There was an error submitting the form.");
+        console.error("Une erreur s'est produite :", error);
+        notify_err("Une erreur s'est produite lors de l'envoi du formulaire.");
     }
-  };
+};
 
   useEffect(() => {
     const fetchHoraires = async (date: string) => {
@@ -87,7 +97,7 @@ function FormReservation() {
         const response = await fetch(
           "http://esport/src/php/ajax/getHoraires.php",
           {
-            method: "GET",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
@@ -96,7 +106,7 @@ function FormReservation() {
         );
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`Erreur HTTP ! statut : ${response.status}`);
         }
 
         const data = await response.json();
@@ -108,7 +118,7 @@ function FormReservation() {
         );
         console.log(data);
       } catch (error) {
-        console.error("There was an error fetching the horaires:", error);
+        console.error("Une erreur s'est produite lors de la récupération des horaires :", error);
       }
     };
 
@@ -160,7 +170,7 @@ function FormReservation() {
         />
         <Button type="submit" classValue="submit" text="Réserver" />
       </form>
-      <Toaster />
+      <Toaster position="bottom-right"/>
     </div>
   );
 }

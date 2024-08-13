@@ -20,7 +20,7 @@ try {
         $fileExtension = strtolower(end($fileNameCmps));
 
         // Définir le chemin de destination
-        $uploadFileDir = '../../img/actus/';
+        $uploadFileDir = '../../assets/img/actus/';
         $dest_path = $uploadFileDir . $fileName;
 
         // Déplacer le fichier téléchargé vers le répertoire de destination

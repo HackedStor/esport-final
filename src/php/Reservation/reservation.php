@@ -5,21 +5,24 @@ header("Access-Control-Allow-Headers: Content-Type");
 require('../config/config.php');
 
 session_start();
-ob_start();
+
 $msg = '';
 $maxParticipants = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Lire le corps de la requête JSON
-    $inputJSON = file_get_contents('php://input');
-    $input = json_decode($inputJSON, TRUE);
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $classe = $_POST['classe'];
+    $date = $_POST['date'];
+    $horaire = $_POST['horaire'];
 
-    // Assurez-vous que toutes les clés nécessaires sont présentes
-    $nom = $input['nom'];
-    $prenom = $input['prenom'];
-    $classe = $input['classe'];
-    $date = $input['date'];
-    $horaire = $input['horaire'];
+    // Commenter ou supprimer les var_dump pour éviter d'insérer du HTML dans la réponse JSON
+    // var_dump($nom);
+    // var_dump($prenom);
+    // var_dump($classe);
+    // var_dump($date);
+    // var_dump($horaire);
+
 
     // Vérifiez que toutes les données requises sont présentes
     if (!$nom || !$prenom || !$classe || !$date || !$horaire) {
@@ -101,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo json_encode(['message' => $msg]);
     exit();
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $msg = "GET !";
+    $msg = "Tu fais quoi la frero !";
     echo json_encode(['message' => $msg]);
     exit();
 }
