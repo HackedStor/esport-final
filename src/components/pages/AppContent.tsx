@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes, Link, useLocation } from 'react-router-dom';
-import Dashboard from './user/Dashboard';
+import Dashboard from './user/Dashboard.tsx';
 import AdminDashboard from './admin/AdminDashboard';
 import Logout from './admin/Logout';
 import UserAuth from './UserAuth';
