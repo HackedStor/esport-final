@@ -23,11 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // var_dump($date);
     // var_dump($horaire);
 
-
     // Vérifiez que toutes les données requises sont présentes
     if (!$nom || !$prenom || !$classe || !$date || !$horaire) {
         $msg = "Tous les champs sont requis.";
-        $success = false
+        $success = false;
     } else {
         $table = ($horaire == "crn1") ? "crn1" : "crn2";
         $other_table = ($horaire == "crn1") ? "crn2" : "crn1";
@@ -100,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             try {
                 include_once 'send_list.php';
                 $msg = 'Bravo tu viens de prendre la dernière place !';
-                $success = true
+                $success = true;
             } catch (PDOException $e) {
                 $msg = "Erreur. Envoie un mail à Monsieur Roux par l'ENT pour plus d'informations.";
                 $success = false;
@@ -116,4 +115,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo json_encode(['message' => $msg, 'success' => $success ]);
     exit();
 }
-?>
