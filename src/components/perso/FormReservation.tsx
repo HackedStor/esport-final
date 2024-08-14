@@ -78,7 +78,7 @@ function FormReservation() {
       // Essayez ensuite de la convertir en JSON
       try {
         const result = JSON.parse(responseText);
-        if (!result.success) notify_err(result.message);
+        if (result.success == false) notify_err(result.message);
         else notify_ok(result.message);
       } catch (jsonError) {
         console.error("Erreur lors du parsing du JSON :", jsonError);
