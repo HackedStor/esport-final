@@ -37,6 +37,9 @@
 .footer {
     display: flex;
     justify-content: center;
+    background-color: #2b2b2b;
+    padding: 10px;
+    margin-top: 20px;
 }
 .newsHeader, .scheduleHeader, .gamesHeader, .tournamentsHeader {
     width: 50%;
