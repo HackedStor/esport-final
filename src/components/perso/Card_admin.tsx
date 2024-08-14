@@ -13,6 +13,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ id, image, title, description, date, buttonSup, initialVisibility, onActionComplete }) => {
   const [isVisible, setIsVisible] = useState(initialVisibility);
+  const [isModalOpen, setIsModalOpen] = useState(false); // État pour gérer la popup
 
   const handleDelete = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -63,11 +64,17 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
     }
   };
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <div className="news-card">
       <img src={image} alt={title} className="news-card__image" />
       <div className="news-card__content">
-        <h2 className="news-card__title">{title}</h2>
+        <h2 className="news-card__title" onClick={toggleModal} style={{ cursor: 'pointer' }}>
+          {title}
+        </h2>
         <p className="news-card__date">{date}</p>
         <p className="news-card__description">{description}</p>
       </div>
@@ -79,6 +86,18 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
           <button type='submit'>{isVisible ? 'Cacher l\'actus' : 'Afficher l\'actus'}</button>
         </form>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={toggleModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>{title}</h2>
+            <p>{date}</p>
+            <p>{description}</p>
+            <button onClick={toggleModal}>Fermer</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

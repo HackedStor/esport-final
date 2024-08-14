@@ -8,6 +8,7 @@ import PrivateRoute from '../perso/PrivateRoute';
 import Reservation from './Reservation';
 import Home from './Home';
 import Actualites from './admin/NewsPage.tsx';
+import Profile from './user/Profile.tsx';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -46,6 +47,7 @@ const AppContent: React.FC = () => {
             </PrivateRoute>
           } />
           <Route path="/admin/dashboard/actualites" element={<Actualites />} />
+          <Route path="/dashboard/profile" element={<Profile />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>

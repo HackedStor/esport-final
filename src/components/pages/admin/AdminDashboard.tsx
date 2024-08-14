@@ -108,17 +108,6 @@ const AdminDashboard: React.FC = () => {
           ) : (
             <div className="news-cards-container">
               {newsData.map((newsItem, index) => (
-                // <Card
-                //   id={newsItem.id}
-                //   key={index}
-                //   image={newsItem.image}
-                //   title={newsItem.title}
-                //   description={newsItem.description}
-                //   date={newsItem.date}
-                //   buttonSup="Supprimer"
-                //   toogleBTN="Cacher l'actus"
-                //   onActionComplete={refreshNews} // Passe la fonction de rafraîchissement
-                // />
                 <Card
                   id={newsItem.id}
                   key={index}

@@ -55,7 +55,9 @@ const Dashboard: React.FC = () => {
         </nav>
       </aside>
       <main className="dashboard-content">
-        <h1>Bonjour {pseudo || 'Utilisateur'} !</h1>
+        <h1 className='title-1'>Bonjour {pseudo || 'Utilisateur'} !</h1>
+        
+
       </main>
     </div>
   );
