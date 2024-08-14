@@ -23,16 +23,17 @@ const CustomCard: React.FC<CardProps> = ({ image, title, description, link, date
         <p className="news-card__description">{description}</p>
       </div>
       <div className="news-card__footer">
-        <a href={link} className="news-card__link">Lire la suite</a>
+        <a onClick={toggleModal} className="news-card__link">Lire la suite</a>
       </div>
       {/* Modal */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={toggleModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>{title}</h2>
-            <p>{date}</p>
-            <p>{description}</p>
-            <button onClick={toggleModal}>Fermer</button>
+            <h2 className='modalH2'>{title}</h2>
+            <p className='modalP'>{date}</p>
+            <p className='modalText'>{description}</p>
+            <a href={link} className='modalLink'>Lien externe: {link}</a>
+            <button className='modalClose' onClick={toggleModal}>Fermer</button>
           </div>
         </div>
       )}
