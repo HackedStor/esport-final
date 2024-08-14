@@ -3,6 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../../../assets/css/Dashboard.css';
+import { AreaChartStepFC24 } from '../../perso/UserCharts/AreaChartStepFC24';
+import { AreaChartStepLol } from '../../perso/UserCharts/AreaChartStepLol';
+import { AreaChartStepMarioKart } from '../../perso/UserCharts/AreaChartStepMarioKart';
+import { AreaChartStepRL } from '../../perso/UserCharts/AreaChartStepRL';
+import { AreaChartStepSupSmashBros } from '../../perso/UserCharts/AreaChartStepSupSmashBros';
+import { AreaChartStepTm } from '../../perso/UserCharts/AreaChartStepTm';
+import { AreaChartStepValo } from '../../perso/UserCharts/AreaChartStepValo';
 
 const Dashboard: React.FC = () => {
   const [pseudo, setPseudo] = useState<string>('');
@@ -56,8 +63,15 @@ const Dashboard: React.FC = () => {
       </aside>
       <main className="dashboard-content">
         <h1 className='title-1'>Bonjour {pseudo || 'Utilisateur'} !</h1>
-        
-
+        <div className='w-[full] flex gap-3 flex-wrap'>
+          <AreaChartStepFC24 />
+          <AreaChartStepLol />
+          <AreaChartStepMarioKart />
+          <AreaChartStepRL />
+          <AreaChartStepSupSmashBros />
+          <AreaChartStepTm />
+          <AreaChartStepValo />
+        </div>
       </main>
     </div>
   );
