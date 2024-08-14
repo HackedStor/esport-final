@@ -19,6 +19,7 @@ const FormAuth: React.FC = () => {
     e.preventDefault();
 
     const formData = new FormData(e.target as HTMLFormElement);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const formDataObject: FormData = Object.fromEntries(formData.entries()) as any;
 
     try {
@@ -37,7 +38,9 @@ const FormAuth: React.FC = () => {
       const result = await response.json();
 
       if (url.includes('register')) {
-        notify_ok(result.message || result.error || result.success);
+        if(result.success) notify_ok(result.success)
+        else if (result.error) notify_err(result.error)
+        else notify_neutral(result.message)
       } else {
         if (result.success) {
           localStorage.setItem('email', result.email);
@@ -45,7 +48,7 @@ const FormAuth: React.FC = () => {
           notify_ok(result.message);
           navigate(result.redirectUrl);
         } else {
-          notify_ok(result.message);
+          notify_err(result.message);
         }
       }
     } catch (error) {
@@ -56,6 +59,7 @@ const FormAuth: React.FC = () => {
 
   const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.success(text)
   const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.error(text)
+  const notify_neutral = (text: Renderable | ValueFunction<Renderable, Toast>) => toast(text)
 
   return (
     <div className='AuthSection'>

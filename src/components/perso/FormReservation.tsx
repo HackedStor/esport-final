@@ -55,41 +55,40 @@ function FormReservation() {
   const [selectedDate, setSelectedDate] = useState<string>(
     optionsDate[0].value
   );
-  
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
     try {
-        const response = await fetch(
-            "http://esport/src/php/Reservation/reservation.php",
-            {
-                method: "POST",
-                body: formData,
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+      const response = await fetch(
+        "http://esport/src/php/Reservation/reservation.php",
+        {
+          method: "POST",
+          body: formData,
         }
+      );
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+      }
 
-        // Inspectez la réponse en tant que texte
-        const responseText = await response.text();
-        // Essayez ensuite de la convertir en JSON
-        try {
-            const result = JSON.parse(responseText);
-            notify_ok(result.message);
-        } catch (jsonError) {
-            console.error("Erreur lors du parsing du JSON :", jsonError);
-            notify_err("La réponse du serveur n'est pas au format JSON attendu.");
-        }
-
+      // Inspectez la réponse en tant que texte
+      const responseText = await response.text();
+      // Essayez ensuite de la convertir en JSON
+      try {
+        const result = JSON.parse(responseText);
+        if (!result.success) notify_err(result.message);
+        else notify_ok(result.message);
+      } catch (jsonError) {
+        console.error("Erreur lors du parsing du JSON :", jsonError);
+        notify_err("La réponse du serveur n'est pas au format JSON attendu.");
+      }
     } catch (error) {
-        console.error("Une erreur s'est produite :", error);
-        notify_err("Une erreur s'est produite lors de l'envoi du formulaire.");
+      console.error("Une erreur s'est produite :", error);
+      notify_err("Une erreur s'est produite lors de l'envoi du formulaire.");
     }
-};
+  };
 
   useEffect(() => {
     const fetchHoraires = async (date: string) => {
@@ -118,7 +117,10 @@ function FormReservation() {
         );
         console.log(data);
       } catch (error) {
-        console.error("Une erreur s'est produite lors de la récupération des horaires :", error);
+        console.error(
+          "Une erreur s'est produite lors de la récupération des horaires :",
+          error
+        );
       }
     };
 
@@ -170,7 +172,7 @@ function FormReservation() {
         />
         <Button type="submit" classValue="submit" text="Réserver" />
       </form>
-      <Toaster position="bottom-right"/>
+      <Toaster position="bottom-right" />
     </div>
   );
 }

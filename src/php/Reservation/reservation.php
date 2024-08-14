@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérifiez que toutes les données requises sont présentes
     if (!$nom || !$prenom || !$classe || !$date || !$horaire) {
         $msg = "Tous les champs sont requis.";
+        $success = false
     } else {
         $table = ($horaire == "crn1") ? "crn1" : "crn2";
         $other_table = ($horaire == "crn1") ? "crn2" : "crn1";
@@ -42,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($total1 >= 16) {
             $msg = "Plus de place disponible pour cette session !";
+            $success = false;
         } else {
             $currentDate = date('Y-m-d', strtotime('last Sunday', strtotime($date)));
 
@@ -55,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($total > 0) {
                 $msg = "Vous êtes déjà inscrit pour cette semaine.";
+                $success = false;
             } else {
                 $verif2 = "SELECT COUNT(*) AS total FROM $other_table WHERE nom=:nom AND prenom=:prenom AND date >= :currentDate AND date < DATE_ADD(:currentDate, INTERVAL 7 DAY)";
                 $stmt = $conn->prepare($verif2);
@@ -66,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($total > 0) {
                     $msg = "Vous êtes déjà inscrit pour cette semaine.";
+                    $success = false;
                 } else {
                     $verif3 = "INSERT INTO $table (nom, prenom, classe, date) VALUES (:nom, :prenom, :classe, :date)";
                     $stmt = $conn->prepare($verif3);
@@ -75,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bindParam(':date', $date);
                     if ($stmt->execute()) {
                         $msg = "Inscription réussie.";
+                        $success = true;
                         $verif4 = "SELECT COUNT(*) AS total FROM $table WHERE date=:date";
                         $stmt = $conn->prepare($verif4);
                         $stmt->bindParam(':date', $date);
@@ -85,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     } else {
                         $msg = "Erreur lors de l'inscription.";
+                        $success = false;
                     }
                 }
             }
@@ -94,8 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             try {
                 include_once 'send_list.php';
                 $msg = 'Bravo tu viens de prendre la dernière place !';
+                $success = true
             } catch (PDOException $e) {
                 $msg = "Erreur. Envoie un mail à Monsieur Roux par l'ENT pour plus d'informations.";
+                $success = false;
             }
         }
     }
@@ -105,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
     $msg = "Tu fais quoi la frero !";
-    echo json_encode(['message' => $msg]);
+    echo json_encode(['message' => $msg, 'success' => $success ]);
     exit();
 }
 ?>

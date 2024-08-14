@@ -43,7 +43,7 @@ function Home() {
   }, []);
 
   const handleCTAClick = () => {
-    console.log("Bonjour");
+    window.location.href = "reservation";
   };
 
   return (
