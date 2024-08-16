@@ -3,50 +3,57 @@
 //////////////////////*/
 
 .hero {
-    background: url('/src/assets/img/fond-armateam.png') no-repeat center center;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  background: url("/src/assets/img/fond-armateam.png") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero .card {
   background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    width: 25vw;
-    padding: 2vh 1vw;
-    margin-left: 5%;
-    border-radius: 5px;
+  backdrop-filter: blur(10px);
+  width: 25vw;
+  padding: 2vh 1vw;
+  margin-left: 5%;
+  border-radius: 5px;
 }
-.hero .card h1, .hero .card p {
-    width: 100%;
+.hero .card h1,
+.hero .card p {
+  width: 100%;
 }
 
 /*//////////////////////
          NEWS
 //////////////////////*/
 
-.news, .schedule, .games, .tournaments {
-    margin-top: 20vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.news,
+.schedule,
+.games,
+.tournaments {
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .footer {
-    display: flex;
-    justify-content: center;
-    background-color: #2b2b2b;
-    padding: 10px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #2b2b2b;
+  padding: 10px;
+  margin-top: 20px;
 }
-.newsHeader, .scheduleHeader, .gamesHeader, .tournamentsHeader {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+.newsHeader,
+.scheduleHeader,
+.gamesHeader,
+.tournamentsHeader {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .news-section {
@@ -64,76 +71,89 @@
   justify-content: center;
 }
 
-
 .news-card {
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #2b2b2b;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #2b2b2b;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    width: 300px;
-    max-height: 450px;
-  }
-  
-  .news-card__image {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-  }
-  
-  .news-card__content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 20px;
-    overflow: hidden;
-  }
-  
-  .news-card__title {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-  
-  .news-card__date {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 10px;
-  }
-  .news-card__description {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .news-card__footer {
-    padding-left: 20px;
-    padding-bottom: 10px;
-    margin-top: auto;
-    background-color: #2b2b2b;
-  }
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #2b2b2b;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #2b2b2b;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 300px;
+  max-height: 450px;
+}
 
-  .news-card__link {
+.news-card__image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.news-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.news-card__title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.news-card__date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+.news-card__description {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.news-card__footer {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  margin-top: auto;
+  background-color: #2b2b2b;
+}
+
+.news-card__link {
   color: #1e90ff;
   text-decoration: none;
   font-weight: bold;
 }
-  
-  .news-card__link:hover {
-    text-decoration: underline;
+
+.news-card__link:hover {
+  text-decoration: underline;
+}
+
+.title-1,
+.title-2,
+.title-3,
+.title-4,
+.title-5 {
+  font-size: 40px;
+}
+.title-6 {
+  font-size: 30px;
+}
+
+@media (max-width: 1000px) {
+  .hero .card {
+    align-self: center;
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
   }
-  
-  .title-1, .title-2, .title-3, .title-4, .title-5 {
-    font-size: 40px;
-  }
-  .title-6 {
-    font-size: 30px;
-  }
+}
