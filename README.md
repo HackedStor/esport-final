@@ -7,7 +7,7 @@ This is a web application for the Jules Ferry High School esport club. People ca
 ## Technologies Used
 
 - Frontend: React, CSS, HTML5, Typescript
-- Backend: Node.js, Express.js, PHP, Wampserver
+- Backend: Node.js, PHP, Wampserver
 
 ## Features and Functionalities
 
@@ -25,4 +25,4 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-This project was created by <a href='https://github.com/hackedstor'>Hacked Storm</a> and <a href='https://levraiardox.is-a.dev'>Ardox</a> for the Jules Ferry High School esport club.
+This project was created by <a href='https://github.com/hackedstor'>Sytrix</a> and <a href='https://levraiardox.is-a.dev'>Ardox</a> for the Jules Ferry High School esport club.
