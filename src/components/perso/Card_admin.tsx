@@ -91,10 +91,10 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
       {isModalOpen && (
         <div className="modal-overlay" onClick={toggleModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>{title}</h2>
-            <p>{date}</p>
-            <p>{description}</p>
-            <button onClick={toggleModal}>Fermer</button>
+            <h2 className='modalH2'>{title}</h2>
+            <p className='modalP'>{date}</p>
+            <p className='modalText'>{description}</p>
+            <button onClick={toggleModal} className='modalClose'>Fermer</button>
           </div>
         </div>
       )}
