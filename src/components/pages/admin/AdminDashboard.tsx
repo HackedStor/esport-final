@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../../../assets/css/Dashboard.css';
 import Card from '../../perso/Card_admin';
+import { DataTableDemo } from '../../perso/DataTable';
 import { slide as Menu } from 'react-burger-menu'
 
 interface NewsItem {
@@ -93,6 +94,9 @@ const AdminDashboard: React.FC = () => {
 
       <main className="dashboard-content">
         <h1 className='mt-5 text-5xl font-extrabold'>Bonjour Admin {pseudo || 'Utilisateur'} !</h1>
+        <section className="news AdminNewsTable container">
+          <DataTableDemo />
+        </section>
         <section className="news">
           <header className="newsHeader">
             <h2 className="title-6 font-regular">Les actualités dans la base de données</h2>

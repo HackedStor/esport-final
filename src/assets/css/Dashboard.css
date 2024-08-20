@@ -116,3 +116,33 @@
   display: flex;
   justify-content: center;
 }
+
+.AdminNewsTable {
+  padding: 50px;
+  border-radius: 5px;
+  background-color: #2b2b2b;
+  max-width: 100vh;
+}
+
+.TableTitleRow {
+}
+.TableRow {
+  border-bottom: 1px solid #888;
+}
+.Table {
+  border-radius: 5px;
+  border-color: #888;
+}
+.TableInput {
+  border-radius: 5px;
+  border: none;
+}
+.TableBtn {
+  border-radius: 5px;
+  border: none;
+}
+.TableModal {
+  border-radius: 5px;
+  border: none;
+  background-color: #0D0D0D;
+}
