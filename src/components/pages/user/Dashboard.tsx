@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
+import {slide as Menu} from 'react-burger-menu'
 import '../../../assets/css/Dashboard.css';
 
 const Dashboard: React.FC = () => {
@@ -44,16 +43,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard">
-      <aside className="sidebar">
-        <nav>
-          <ul>
-            <li><Link to="/dashboard">Tableau de bord</Link></li>
-            <li><Link to="/dashboard/profile">Profil</Link></li>
-            {/* <li><Link to="/dashboard/settings">Paramètres</Link></li> */}
-            <li><Link to="/logout">Déconnexion</Link></li>
-          </ul>
-        </nav>
-      </aside>
+      <Menu width={ 280 } >
+          <a id="home" className="menu-item" href="/dashboard">Tableau de bord</a>
+          <a id="about" className="menu-item" href="/dashboard/profile">Profil</a>
+          <a id="about" className="menu-item" href="/logout">Déconnexion</a>
+        </Menu>
       <main className="dashboard-content">
         <h1>Bonjour {pseudo || 'Utilisateur'} !</h1>
       </main>

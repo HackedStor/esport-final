@@ -77,3 +77,42 @@
   color: #1e90ff;
   padding-bottom: 20px;
 }
+
+/* Bouton du burger */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+/* Barres du burger */
+.bm-burger-bars {
+  background: #ffffff;
+}
+/* Bouton fermer */
+.bm-cross {
+  background: #bdc3c7;
+}
+/* Sidebar */
+.bm-menu {
+  background: #2e2e2e;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+/* Item de la sidebar */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+.actu-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphs {
+  display: flex;
+  justify-content: center;
+}

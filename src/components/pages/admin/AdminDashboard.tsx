@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import '../../../assets/css/Dashboard.css';
 import Card from '../../perso/Card_admin';
+import { slide as Menu } from 'react-burger-menu'
 
 interface NewsItem {
   id: number;
@@ -82,18 +82,15 @@ const AdminDashboard: React.FC = () => {
     fetchUserData();
   }, []);
 
+
   return (
     <div className="dashboard">
-      <aside className="sidebar">
-        <nav>
-          <ul className='mt-6'>
-            <li><Link to="/dashboard">Tableau de bord</Link></li>
-            <li><Link to="/admin/dashboard/actualites">Actualitées</Link></li>
-            <li><Link to="/dashboard/settings">Paramètres</Link></li>
-            <li><Link to="/logout">Déconnexion</Link></li>
-          </ul>
-        </nav>
-      </aside>
+        <Menu width={ 280 } >
+            <a id="home" className="menu-item" href="/dashboard">Dashboard</a>
+            <a id="about" className="menu-item" href="/admin/dashboard/actualites">Actualitées</a>
+            <a id="about" className="menu-item" href="/logout">Déconnexion</a>
+        </Menu>
+
       <main className="dashboard-content">
         <h1 className='mt-5 text-5xl font-extrabold'>Bonjour Admin {pseudo || 'Utilisateur'} !</h1>
         <section className="news">
