@@ -43,31 +43,31 @@ import "../../assets/css/Dashboard.css"
 const data: Payment[] = [
   {
     id: "m5gr84i9",
-    inscrit: "oui",
+    session: "1",
     pseudo: "ken99",
     email: "ken99@yahoo.com",
   },
   {
     id: "3u1reuv4",
-    inscrit: "oui",
+    session: "1",
     pseudo: "Abe45",
     email: "Abe45@gmail.com",
   },
   {
     id: "derv1ws0",
-    inscrit: "non",
+    session: "2",
     pseudo: "Monsterrat",
     email: "Monserrat44@gmail.com",
   },
   {
     id: "5kma53ae",
-    inscrit: "oui",
+    session: "2",
     pseudo: "Silas22",
     email: "Silas22@gmail.com",
   },
   {
     id: "bhqecj4p",
-    inscrit: "non",
+    session: "1",
     pseudo: "carmella",
     email: "carmella@hotmail.com",
   },
@@ -75,11 +75,12 @@ const data: Payment[] = [
 
 export type Payment = {
   id: string
-  inscrit: string
+  session: string
   pseudo: string
   email: string
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const columns: ColumnDef<Payment>[] = [
   {
     id: "select",
@@ -126,11 +127,11 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
-    accessorKey: "inscrit",
-    header: () => <div className="text-right">Inscrit</div>,
+    accessorKey: "session",
+    header: () => <div className="text-right">Session</div>,
     cell: ({ row }) => {
 
-      return <div className="text-right font-medium">{row.getValue("inscrit")}</div>
+      return <div className="text-right font-medium">{row.getValue("session")}</div>
     },
   },
   {

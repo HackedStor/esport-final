@@ -1,52 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../assets/css/Dashboard.css';
-import Card from '../../perso/Card_admin';
 import { DataTableDemo } from '../../perso/DataTable';
 import { slide as Menu } from 'react-burger-menu'
-
-interface NewsItem {
-  id: number;
-  image: string;
-  title: string;
-  description: string;
-  link: string;
-  date: string;
-  is_visible: number;
-}
+import { TableDemo } from '../../perso/NewsTable';
 
 const AdminDashboard: React.FC = () => {
   const [pseudo, setPseudo] = useState<string>('');
-  const [newsData, setNewsData] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  // Fonction pour récupérer les actualités
-  const refreshNews = useCallback(async () => {
-    try {
-      const response = await fetch("http://esport/src/php/getNewsFromAdmin.php");
-      if (!response.ok) {
-        throw new Error("Échec de la recherche de nouvelles");
-      }
-      const data = await response.json();
-
-      // Vérification du message dans la réponse
-      if ('message' in data && data.message === "Pas d'annonces disponibles") {
-        setError(data.message);
-        setNewsData([]);
-      } else {
-        setNewsData(data);
-      }
-    } catch (error) {
-      setError("Erreur lors de la récupération des actualités.");
-      console.error("Erreur lors de la récupération des actualités:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    refreshNews(); // Appel initial pour charger les actualités
-  }, [refreshNews]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -93,37 +53,14 @@ const AdminDashboard: React.FC = () => {
         </Menu>
 
       <main className="dashboard-content">
-        <h1 className='mt-5 text-5xl font-extrabold'>Bonjour Admin {pseudo || 'Utilisateur'} !</h1>
-        <section className="news AdminNewsTable container">
+        <h1 className='mt-5 text-5xl font-extrabold'>Bonjour Admin {pseudo} !</h1>
+        <section className="AdminTable container">
+          <h2 className="title-6 font-regular sectionTitle">Joueurs inscrits a la prochaine session</h2>
           <DataTableDemo />
         </section>
-        <section className="news">
-          <header className="newsHeader">
-            <h2 className="title-6 font-regular">Les actualités dans la base de données</h2>
-          </header>
-
-          {loading ? (
-            <p>Chargement des actualités...</p>
-          ) : error ? (
-            <p className="text-red-500">{error}</p>
-          ) : (
-            <div className="news-cards-container">
-              {newsData.map((newsItem, index) => (
-                <Card
-                  id={newsItem.id}
-                  key={index}
-                  image={newsItem.image}
-                  title={newsItem.title}
-                  description={newsItem.description}
-                  date={newsItem.date}
-                  buttonSup="Supprimer"
-                  onActionComplete={refreshNews}
-                  initialVisibility={newsItem.is_visible === 1} // Passe la visibilité actuelle
-                  
-                />
-              ))}
-            </div>
-          )}
+        <section className="container AdminTable">
+          <h2 className="title-6 font-regular sectionTitle">Les actualités dans la base de données</h2>
+          <TableDemo />
         </section>
       </main>
     </div>

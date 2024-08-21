@@ -103,6 +103,7 @@ const AddNewsForm: React.FC = () => {
             onChange={handleChange}
             type="file"
             accept="image/*"
+            
           />
           <Input
             htmlFor="title"
