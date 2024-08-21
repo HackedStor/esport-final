@@ -1,7 +1,7 @@
-
+/* eslint-disable react-refresh/only-export-components */
 import * as React from "react"
 import {
-  CaretSortIcon,
+  // CaretSortIcon,
   ChevronDownIcon,
   DotsHorizontalIcon,
 } from "@radix-ui/react-icons"
@@ -19,7 +19,7 @@ import {
 } from "@tanstack/react-table"
 
 import { Button } from "../ui/button"
-import { Checkbox } from "../ui/checkbox"
+// import { Checkbox } from "../ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -40,106 +40,39 @@ import {
 } from "../ui/table"
 import "../../assets/css/Dashboard.css"
 
-const data: Payment[] = [
-  {
-    id: "m5gr84i9",
-    session: "1",
-    pseudo: "ken99",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "3u1reuv4",
-    session: "1",
-    pseudo: "Abe45",
-    email: "Abe45@gmail.com",
-  },
-  {
-    id: "derv1ws0",
-    session: "2",
-    pseudo: "Monsterrat",
-    email: "Monserrat44@gmail.com",
-  },
-  {
-    id: "5kma53ae",
-    session: "2",
-    pseudo: "Silas22",
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    session: "1",
-    pseudo: "carmella",
-    email: "carmella@hotmail.com",
-  },
-]
-
-export type Payment = {
-  id: string
-  session: string
-  pseudo: string
-  email: string
+export type Player = {
+  id: number
+  nom: string
+  prenom: string
+  classe: string
+  date: string
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Player>[] = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
+    accessorKey: "nom",
+    header: "Nom",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("nom")}</div>,
   },
   {
-    accessorKey: "pseudo",
-    header: "Pseudo",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("pseudo")}</div>
-    ),
+    accessorKey: "prenom",
+    header: "Prénom",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("prenom")}</div>,
   },
   {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    accessorKey: "classe",
+    header: "Classe",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("classe")}</div>,
   },
   {
-    accessorKey: "session",
-    header: () => <div className="text-right">Session</div>,
-    cell: ({ row }) => {
-
-      return <div className="text-right font-medium">{row.getValue("session")}</div>
-    },
+    accessorKey: "date",
+    header: "Date de la session",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("date")}</div>,
   },
   {
     id: "actions",
-    enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
-
+      const player = row.original
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -151,13 +84,12 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end" className="TableModal">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(player.id.toString())}
             >
-              Copy payment ID
+              Copy player ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View player details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -167,12 +99,10 @@ export const columns: ColumnDef<Payment>[] = [
 
 export function DataTableDemo() {
   const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
+  const [data, setData] = React.useState<Player[]>([])
 
   const table = useReactTable({
     data,
@@ -193,14 +123,23 @@ export function DataTableDemo() {
     },
   })
 
+  React.useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://esport/src/php/Member/getPlayerNextSession.php")
+      const result = await response.json()
+      setData(result)
+    }
+    fetchData()
+  }, [])
+
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filtrer les emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filtrer les noms..."
+          value={(table.getColumn("nom")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("nom")?.setFilterValue(event.target.value)
           }
           className="max-w-sm TableInput"
         />
@@ -214,20 +153,18 @@ export function DataTableDemo() {
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
+              .map((column) => (
+                <DropdownMenuCheckboxItem
+                  key={column.id}
+                  className="capitalize"
+                  checked={column.getIsVisible()}
+                  onCheckedChange={(value) =>
+                    column.toggleVisibility(!!value)
+                  }
+                >
+                  {column.id}
+                </DropdownMenuCheckboxItem>
+              ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -236,23 +173,21 @@ export function DataTableDemo() {
           <TableHeader className="TableTitleRow">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  )
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -283,10 +218,6 @@ export function DataTableDemo() {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} de{" "}
-          {table.getFilteredRowModel().rows.length} élément(s) séléctionnés.
-        </div>
         <div className="space-x-2">
           <Button
             className="TableBtn"
