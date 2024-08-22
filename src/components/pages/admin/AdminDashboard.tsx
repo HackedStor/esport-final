@@ -62,9 +62,13 @@ const AdminDashboard: React.FC = () => {
           <h2 className="title-6 font-regular sectionTitle">Les actualités dans la base de données</h2>
           <TableDemo />
         </section>
-        <br />
-        <br />
-        <br />
+        <footer className="footer">
+        <p>
+          © 2024 Esport au Lycée Jules Ferry. Tous droits réservés. |
+          <a href="/privacy"> Politique de confidentialité</a> |
+          <a href="/terms"> Conditions d'utilisation</a>
+        </p>
+      </footer>
       </main>
     </div>
   );

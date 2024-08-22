@@ -19,7 +19,6 @@ try {
             SELECT * FROM crn2
         ) AS combined
         ORDER BY STR_TO_DATE(date, '%d-%m-%Y') DESC
-        LIMIT 1
     ";
 
     $stmt = $conn->prepare($sql);
