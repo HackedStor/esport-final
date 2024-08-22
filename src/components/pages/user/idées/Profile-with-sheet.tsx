@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { slide as Menu } from "react-burger-menu";
 import "../../../assets/css/Dashboard.css";
+import CustomSheet from "../../perso/sheet";
 
 const Dashboard: React.FC = () => {
   return (
@@ -16,7 +17,13 @@ const Dashboard: React.FC = () => {
           Déconnexion
         </a>
       </Menu>
-      <main>
+      <main className="dashboard-content profile-btn">
+        <CustomSheet label="League of legends" />
+        <CustomSheet label="Valorant" />
+        <CustomSheet label="Trackmania" />
+        <CustomSheet label="Fc24" />
+        <CustomSheet label="Super Smash Bros" />
+        <CustomSheet label="Mario Kart" />
       </main>
     </div>
   );

@@ -168,3 +168,35 @@ input[type="file"]::-webkit-file-upload-button {
 .sectionTitle {
   margin-bottom: 40px;
 }
+.profile-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.SheetBtn {
+  border: none;
+  margin: 20px;
+  border-radius: 5px;
+  width: 20vh;
+}
+.Sheet {
+  background-color: #2b2b2b;
+  border: none;
+  min-width: 50%;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 70vh;
+}
+.tablist {
+  height: auto;
+}

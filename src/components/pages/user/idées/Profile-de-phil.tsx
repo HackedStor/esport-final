@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { slide as Menu } from "react-burger-menu";
 import "../../../assets/css/Dashboard.css";
+import FormComponent from "../../perso/le truc de phil";
 
 const Dashboard: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Dashboard: React.FC = () => {
         </a>
       </Menu>
       <main>
+        <FormComponent />
       </main>
     </div>
   );
