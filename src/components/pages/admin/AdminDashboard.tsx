@@ -62,6 +62,9 @@ const AdminDashboard: React.FC = () => {
           <h2 className="title-6 font-regular sectionTitle">Les actualités dans la base de données</h2>
           <TableDemo />
         </section>
+        <br />
+        <br />
+        <br />
       </main>
     </div>
   );

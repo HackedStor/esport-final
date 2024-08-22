@@ -25,11 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $news = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($news && !empty($news['image'])) {
-                    // $imagePath = '' . $news['image']; // Remplacez 'path_to_images' par le chemin correct
-                    $imagePath = $news['image'];
+                    $imagePath = '../../..' . $news['image']; // Remplacez 'path_to_images' par le chemin correct
+                    // $imagePath = $news['image'];
                     // Supprime l'image du serveur
                     if (file_exists($imagePath)) {
                         unlink($imagePath);
+                    }else {
+                        var_dump(file_exists($imagePath));
                     }
                 }
 

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Table,
   TableBody,
@@ -6,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import * as React from "react";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 import { Button } from "../ui/button";
 import {
@@ -25,10 +25,10 @@ export function TableDemo() {
     id: number;
     title: string;
     description: string;
-    is_visible: number; // On garde `number` pour refléter les données reçues (0 ou 1)
+    is_visible: number;
   }
 
-  const [newsData, setNewsData] = React.useState<NewsItem[]>([]);
+  const [newsData, setNewsData] = React.useState<NewsItem[] | null>(null);
 
   React.useEffect(() => {
     const fetchNews = async () => {
@@ -40,12 +40,13 @@ export function TableDemo() {
         const data = await response.json();
 
         if ("message" in data && data.message === "Pas d'annonces disponibles") {
-          setNewsData(data);
+          setNewsData(null);
         } else {
           setNewsData(data);
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des actualités:", error);
+        setNewsData(null);
       }
     };
 
@@ -63,7 +64,7 @@ export function TableDemo() {
       });
 
       if (response.ok) {
-        setNewsData((prevData) => prevData.filter((item) => item.id !== id));
+        setNewsData((prevData) => prevData?.filter((item) => item.id !== id) || null);
       } else {
         console.error("Erreur lors de la suppression de l'actualité.");
       }
@@ -79,14 +80,14 @@ export function TableDemo() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id, is_visible: newVisibility ? 1 : 0 }), // Envoi de l'état sous forme de 1 ou 0
+        body: JSON.stringify({ id, is_visible: newVisibility ? 1 : 0 }),
       });
 
       if (response.ok) {
         setNewsData((prevData) =>
-          prevData.map((item) =>
+          prevData?.map((item) =>
             item.id === id ? { ...item, is_visible: newVisibility ? 1 : 0 } : item
-          )
+          ) || null
         );
       } else {
         console.error("Erreur lors de la mise à jour de la visibilité.");
@@ -101,7 +102,7 @@ export function TableDemo() {
     isVisible,
   }: {
     id: number;
-    isVisible: number; // On reçoit 0 ou 1
+    isVisible: number;
   }) {
     const [NewsVisible, setNewsVisible] = React.useState<Checked>(isVisible === 1);
 
@@ -134,27 +135,31 @@ export function TableDemo() {
 
   return (
     <div className="NewsTable">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Nom</TableHead>
-            <TableHead>Visible</TableHead>
-            <TableHead>Description</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {newsData.map((newsItem) => (
-            <TableRow className="NewsTableRow" key={newsItem.id}>
-              <TableCell className="font-medium">{newsItem.title}</TableCell>
-              <TableCell>{newsItem.is_visible === 1 ? "Oui" : "Non"}</TableCell>
-              <TableCell>{newsItem.description.slice(0, 40)}</TableCell>
-              <TableCell className="text-right">
-                <DropdownMenuCheckboxes id={newsItem.id} isVisible={newsItem.is_visible} />
-              </TableCell>
+      {newsData === null ? (
+        <p>Il n'y a pas d'annonces disponibles.</p>
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Nom</TableHead>
+              <TableHead>Visible</TableHead>
+              <TableHead>Description</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {newsData.map((newsItem) => (
+              <TableRow className="NewsTableRow" key={newsItem.id}>
+                <TableCell className="font-medium">{newsItem.title}</TableCell>
+                <TableCell>{newsItem.is_visible === 1 ? "Oui" : "Non"}</TableCell>
+                <TableCell>{newsItem.description.slice(0, 40)}</TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenuCheckboxes id={newsItem.id} isVisible={newsItem.is_visible} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </div>
   );
 }
