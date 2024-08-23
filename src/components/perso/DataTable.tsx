@@ -29,6 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
+import { CheckIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Input } from "../ui/input"
 import {
   Table,
@@ -72,7 +73,7 @@ export const columns: ColumnDef<Player>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const player = row.original
+      const player = row.original;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -86,15 +87,20 @@ export const columns: ColumnDef<Player>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(player.id.toString())}
             >
-              Copy player ID
+              <CheckIcon className="mr-2 h-4 w-4" /> Présent
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(player.id.toString())}
+            >
+              <Cross2Icon className="mr-2 h-4 w-4" /> Absent
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View player details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
-  },
+  }
 ]
 
 export function DataTableDemo() {
