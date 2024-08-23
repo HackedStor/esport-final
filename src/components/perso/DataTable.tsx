@@ -83,19 +83,18 @@ export const columns: ColumnDef<Player>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="TableModal">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Actions possible</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(player.id.toString())}
             >
               <CheckIcon className="mr-2 h-4 w-4" /> Présent
             </DropdownMenuItem>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(player.id.toString())}
+              onClick={() => navigator.clipboard.writeText(player.nom.toString())}
             >
               <Cross2Icon className="mr-2 h-4 w-4" /> Absent
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View player details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
