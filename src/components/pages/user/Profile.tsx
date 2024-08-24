@@ -1,10 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { slide as Menu } from "react-burger-menu";
 import "../../../assets/css/Dashboard.css";
+import { Button } from "../../ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="dashboard">
+    <>
       <Menu width={280}>
         <a id="home" className="menu-item" href="/dashboard">
           Tableau de bord
@@ -16,9 +26,105 @@ const Dashboard: React.FC = () => {
           Déconnexion
         </a>
       </Menu>
-      <main>
-      </main>
-    </div>
+      <div className="tabs-container">
+        <main>
+          <Tabs defaultValue="account" className="tabs">
+            <TabsList className="grid w-full grid-cols-2 tablist">
+              <TabsTrigger value="lol">League of Legends</TabsTrigger>
+              <TabsTrigger value="valo">Valorant</TabsTrigger>
+              <TabsTrigger value="tm">Trackmania</TabsTrigger>
+              <TabsTrigger value="mk">Mario Kart</TabsTrigger>
+              <TabsTrigger value="smash">Super Smash Bros</TabsTrigger>
+              <TabsTrigger value="fc">FC24</TabsTrigger>
+            </TabsList>
+            <TabsContent value="lol">
+              <Card className="profile-card">
+                <CardHeader>
+                  <CardTitle>League of Legends</CardTitle>
+                  <CardDescription>
+                    Changez votre profil League of Legend
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardFooter>
+                  <Button>Sauvegarder</Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+            <TabsContent value="valo">
+              <Card className="profile-card">
+                <CardHeader>
+                  <CardTitle>Valorant</CardTitle>
+                  <CardDescription>
+                    Changez votre profil Valorant
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardFooter>
+                  <Button>Sauvegarder</Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+            <TabsContent value="tm">
+              <Card className="profile-card">
+                <CardHeader>
+                  <CardTitle>Trackmania</CardTitle>
+                  <CardDescription>
+                    Changez votre profil Trackmania
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardFooter>
+                  <Button>Sauvegarder</Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+            <TabsContent value="mk">
+              <Card className="profile-card">
+                <CardHeader>
+                  <CardTitle>Mario Kart</CardTitle>
+                  <CardDescription>
+                    Changez votre profil Mario Kart
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardFooter>
+                  <Button>Sauvegarder</Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+            <TabsContent value="smash">
+              <Card className="profile-card">
+                <CardHeader>
+                  <CardTitle>Super Smash Bros</CardTitle>
+                  <CardDescription>
+                    Changez votre profil Super Smash Bros
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardFooter>
+                  <Button>Sauvegarder</Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+            <TabsContent value="fc">
+              <Card className="profile-card">
+                <CardHeader>
+                  <CardTitle>FC24</CardTitle>
+                  <CardDescription>
+                    Changez votre profil FC24
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardFooter>
+                  <Button>Sauvegarder</Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </main>
+      </div>
+    </>
   );
 };
 

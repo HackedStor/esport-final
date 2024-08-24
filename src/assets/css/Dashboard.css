@@ -199,4 +199,9 @@ input[type="file"]::-webkit-file-upload-button {
 }
 .tablist {
   height: auto;
+  border-radius: 5px;
+}
+.profile-card {
+  border: none;
+  border-radius: 5px;
 }
