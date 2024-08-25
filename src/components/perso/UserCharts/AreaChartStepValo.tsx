@@ -16,11 +16,11 @@ import {
   ChartTooltipContent,
 } from "../../ui/chart"
 const chartData = [
-  { Weeks: "Semaine 1", Valo: 10 },
-  { Weeks: "Semaine 2", Valo: 10 },
-  { Weeks: "Semaine 3", Valo: 20 },
-  { Weeks: "Semaine 4", Valo: 10 },
-  { Weeks: "Semaine 5", Valo: 20 },
+  { Weeks: "Partie 1", Valo: 10 },
+  { Weeks: "Partie 2", Valo: 10 },
+  { Weeks: "Partie 3", Valo: 20 },
+  { Weeks: "Partie 4", Valo: 10 },
+  { Weeks: "Partie 5", Valo: 20 },
 ]
 
 const chartConfig = {

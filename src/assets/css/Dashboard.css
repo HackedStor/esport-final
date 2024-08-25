@@ -195,7 +195,7 @@ input[type="file"]::-webkit-file-upload-button {
 .tabs {
   display: flex;
   flex-direction: column;
-  width: 70vh;
+  width: 90vh;
 }
 .tablist {
   height: auto;
@@ -204,4 +204,11 @@ input[type="file"]::-webkit-file-upload-button {
 .profile-card {
   border: none;
   border-radius: 5px;
+}
+
+.ValoInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
 }

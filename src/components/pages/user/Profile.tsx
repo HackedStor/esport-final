@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "../../ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
+import  ValoCard from "../../perso/gameProfileForms/valo";
 
 const Dashboard: React.FC = () => {
   return (
@@ -59,7 +60,9 @@ const Dashboard: React.FC = () => {
                     Changez votre profil Valorant
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardContent className="space-y-2">
+                  <ValoCard />
+                </CardContent>
                 <CardFooter>
                   <Button>Sauvegarder</Button>
                 </CardFooter>
@@ -111,9 +114,7 @@ const Dashboard: React.FC = () => {
               <Card className="profile-card">
                 <CardHeader>
                   <CardTitle>FC24</CardTitle>
-                  <CardDescription>
-                    Changez votre profil FC24
-                  </CardDescription>
+                  <CardDescription>Changez votre profil FC24</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">trucs a mettre</CardContent>
                 <CardFooter>
