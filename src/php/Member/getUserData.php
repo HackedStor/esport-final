@@ -20,12 +20,12 @@ if (!isset($data['email'])) {
 
 $email = $data['email'];
 
-$stmt = $conn->prepare("SELECT pseudo FROM users WHERE email = :email");
+$stmt = $conn->prepare("SELECT id, email, pseudo FROM users WHERE email = :email");
 $stmt->execute(['email' => $email]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
-    echo json_encode(['success' => true, 'pseudo' => $user['pseudo']]);
+    echo json_encode(['success' => true, 'id' => $user['id'], 'pseudo' => $user['pseudo']]);
 } else {
     echo json_encode(['success' => false, 'message' => 'Utilisateur non trouvé']);
 }

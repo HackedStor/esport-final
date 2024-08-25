@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Input } from "../../../ui/input"
 
-export function ValoScore() {
+export function ValoScoreOtherTeam() {
   const [value, setValue] = React.useState("")
   const [isValid, setIsValid] = React.useState(true)
 
@@ -18,9 +18,9 @@ export function ValoScore() {
   }
 
   return (
-    <div className="w-[15vw]">
+    <div>
       <Input
-        placeholder="Scorre de ton équipe"
+        placeholder="Scorre de l'autre équipe"
         value={value}
         onChange={handleChange}
         className={isValid ? "" : "border-red-500"}

@@ -24,6 +24,7 @@ export function ValoKDA() {
         value={value}
         onChange={handleChange}
         className={isValid ? "" : "border-red-500"}
+        name="kda"
       />
       {!isValid && (
         <p className="text-red-500 mt-2">

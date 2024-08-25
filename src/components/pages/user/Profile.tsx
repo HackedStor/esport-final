@@ -13,6 +13,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import  ValoCard from "../../perso/gameProfileForms/valo";
 
+
 const Dashboard: React.FC = () => {
   return (
     <>
@@ -64,7 +65,7 @@ const Dashboard: React.FC = () => {
                   <ValoCard />
                 </CardContent>
                 <CardFooter>
-                  <Button>Sauvegarder</Button>
+                  <Button>Sauvegarder</Button> {/* onClick={() => submitValorantStats()} */}
                 </CardFooter>
               </Card>
             </TabsContent>
