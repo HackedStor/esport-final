@@ -64,9 +64,9 @@ const Dashboard: React.FC = () => {
                 <CardContent className="space-y-2">
                   <ValoCard />
                 </CardContent>
-                <CardFooter>
-                  <Button>Sauvegarder</Button> {/* onClick={() => submitValorantStats()} */}
-                </CardFooter>
+                {/* <CardFooter>
+                  <Button>Sauvegarder</Button>
+                </CardFooter> */}
               </Card>
             </TabsContent>
             <TabsContent value="tm">

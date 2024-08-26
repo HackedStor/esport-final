@@ -6,10 +6,15 @@ import { ValoScore } from "./input_elements/valo_score";
 import { AreaChartStepValo } from "../UserCharts/AreaChartStepValo";
 import "../../../assets/css/reservation.css";
 import { ValoScoreOtherTeam } from './input_elements/valo_score_other_team';
-
+import { Button } from "../../ui/button";
 
 const ValoCard: React.FC = () => {
-  const [id, setId] = useState();
+  const [userId, setUserId] = React.useState<string>("");
+  // const [userId, setUserId] = useState<number | undefined>(undefined);
+  const [agent, setAgent] = useState<string>("");
+  const [kda, setKda] = useState<string>("");
+  const [score, setScore] = useState<string>("");
+  const [otherTeamScore, setOtherTeamScore] = useState<string>("");
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,7 +38,7 @@ const ValoCard: React.FC = () => {
         }
 
         if (data.success) {
-          setId(data.id);
+          setUserId(data.id);
         } else {
           throw new Error(data.message || 'Erreur inconnue');
         }
@@ -46,22 +51,50 @@ const ValoCard: React.FC = () => {
     fetchUserData();
   }, []);
 
+  const submitValorantStats = async () => {
+    if (!userId) return;
 
+    try {
+      const response = await fetch("http://esport/src/php/Member/GamesForms/insert_valorant_stats.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          agent_name: agent,
+          kda: kda,
+          score: score,
+          otherTeamScore: otherTeamScore
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        console.log("Données enregistrées avec succès.");
+      } else {
+        console.error("Erreur : ", data.message);
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi des données:", error);
+    }
+  };
 
   
   return (
     <div className="valoCard">
       <AreaChartStepValo />
-      <form className="ValoInputs flex flex-wrap justify-between w-[90%">
-        <input type="text" value={id} hidden name='user_id'/>
+      <form className="ValoInputs flex flex-wrap justify-between w-[90%]" onSubmit={(e) => { e.preventDefault(); submitValorantStats(); }}>
         <div className='flex flex-col gap-3'>
-          <ValoAgents />
-          <ValoKDA />
+          <ValoAgents onAgentChange={setAgent}/>
+          <ValoKDA  value={kda} onChange={setKda}/>
         </div>
         <div className='flex flex-col gap-3'>
-          <ValoScore />
-          <ValoScoreOtherTeam />
+          <ValoScore value={score} onChange={setScore}/>
+          <ValoScoreOtherTeam value={otherTeamScore} onChange={setOtherTeamScore}/>
         </div>
+        
+        <Button>Sauvegarder</Button>
       </form>
     </div>
   );

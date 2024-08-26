@@ -14,6 +14,10 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "../../../ui/popover";
 import { cn } from "../../../../lib/utils";
 
+interface ValoAgentsProps {
+  onAgentChange: (agent: string) => void;
+}
+
 const agents = [
   { name: "Brimstone", class: "controleur" },
   { name: "Phoenix", class: "duelliste" },
@@ -41,9 +45,15 @@ const agents = [
   { name: "Clove", class: "controlleur" },
 ];
 
-export function ValoAgents() {
+export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
   const [open, setOpen] = React.useState(false);
   const [selectedAgent, setSelectedAgent] = React.useState<string | null>(null);
+
+  const handleSelectAgent = (agent: string) => {
+    setSelectedAgent(agent);
+    onAgentChange(agent); // Remonte la valeur au parent
+    setOpen(false);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -67,10 +77,7 @@ export function ValoAgents() {
               {agents.map((agent) => (
                 <CommandItem
                   key={agent.name}
-                  onSelect={() => {
-                    setSelectedAgent(agent.name);
-                    setOpen(false);
-                  }}
+                  onSelect={() => handleSelectAgent(agent.name)}
                 >
                   <Check
                     className={cn(
