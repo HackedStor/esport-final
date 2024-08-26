@@ -28,6 +28,7 @@ export function ValoKDA({ value = "", onChange }: ValoKDAProps) {
         onChange={handleChange}
         className={isValid ? "" : "border-red-500"}
         name="kda"
+        required
       />
       {!isValid && (
         <p className="text-red-500 mt-2">KDA invalide (e.g., 10/5/8).</p>

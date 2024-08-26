@@ -29,6 +29,7 @@ export function ValoScore({ value = "", onChange }: ValoScoreProps) {
         onChange={handleChange}
         className={isValid ? "" : "border-red-500"}
         name="score"
+        required
       />
       {!isValid && (
         <p className="text-red-500 mt-2">Score invalide (0 à 99).</p>
