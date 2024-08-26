@@ -33,13 +33,18 @@ export function TableDemo() {
   React.useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("http://esport/src/php/getNewsFromAdmin.php");
+        const response = await fetch(
+          "http://esport/src/php/getNewsFromAdmin.php"
+        );
         if (!response.ok) {
           throw new Error("Échec de la recherche de nouvelles");
         }
         const data = await response.json();
 
-        if ("message" in data && data.message === "Pas d'annonces disponibles") {
+        if (
+          "message" in data &&
+          data.message === "Pas d'annonces disponibles"
+        ) {
           setNewsData(null);
         } else {
           setNewsData(data);
@@ -55,16 +60,21 @@ export function TableDemo() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch("http://esport/src/php/Member/deleteNews.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-      });
+      const response = await fetch(
+        "http://esport/src/php/Member/deleteNews.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+        }
+      );
 
       if (response.ok) {
-        setNewsData((prevData) => prevData?.filter((item) => item.id !== id) || null);
+        setNewsData(
+          (prevData) => prevData?.filter((item) => item.id !== id) || null
+        );
       } else {
         console.error("Erreur lors de la suppression de l'actualité.");
       }
@@ -75,19 +85,25 @@ export function TableDemo() {
 
   const handleVisibilityChange = async (id: number, newVisibility: boolean) => {
     try {
-      const response = await fetch("http://esport/src/php/Member/changeNewsVisibility.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id, is_visible: newVisibility ? 1 : 0 }),
-      });
+      const response = await fetch(
+        "http://esport/src/php/Member/changeNewsVisibility.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, is_visible: newVisibility ? 1 : 0 }),
+        }
+      );
 
       if (response.ok) {
-        setNewsData((prevData) =>
-          prevData?.map((item) =>
-            item.id === id ? { ...item, is_visible: newVisibility ? 1 : 0 } : item
-          ) || null
+        setNewsData(
+          (prevData) =>
+            prevData?.map((item) =>
+              item.id === id
+                ? { ...item, is_visible: newVisibility ? 1 : 0 }
+                : item
+            ) || null
         );
       } else {
         console.error("Erreur lors de la mise à jour de la visibilité.");
@@ -104,7 +120,9 @@ export function TableDemo() {
     id: number;
     isVisible: number;
   }) {
-    const [NewsVisible, setNewsVisible] = React.useState<Checked>(isVisible === 1);
+    const [NewsVisible, setNewsVisible] = React.useState<Checked>(
+      isVisible === 1
+    );
 
     const handleCheckedChange = (checked: Checked) => {
       const newVisibility = checked === true;
@@ -127,7 +145,9 @@ export function TableDemo() {
             Visible
           </DropdownMenuCheckboxItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => handleDelete(id)}>Supprimer</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleDelete(id)}>
+            Supprimer
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     );
@@ -150,10 +170,15 @@ export function TableDemo() {
             {newsData.map((newsItem) => (
               <TableRow className="NewsTableRow" key={newsItem.id}>
                 <TableCell className="font-medium">{newsItem.title}</TableCell>
-                <TableCell>{newsItem.is_visible === 1 ? "Oui" : "Non"}</TableCell>
+                <TableCell>
+                  {newsItem.is_visible === 1 ? "Oui" : "Non"}
+                </TableCell>
                 <TableCell>{newsItem.description.slice(0, 40)}</TableCell>
                 <TableCell className="text-right">
-                  <DropdownMenuCheckboxes id={newsItem.id} isVisible={newsItem.is_visible} />
+                  <DropdownMenuCheckboxes
+                    id={newsItem.id}
+                    isVisible={newsItem.is_visible}
+                  />
                 </TableCell>
               </TableRow>
             ))}

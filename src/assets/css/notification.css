@@ -1,83 +1,87 @@
-
-
 .info__icon {
-    width: 20px;
-    height: 20px;
-    transform: translateY(-2px);
-    margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-2px);
+  margin-right: 8px;
 }
 
 .info__icon path {
-    fill: #509AF8;
+  fill: #509af8;
 }
 
 .info__title {
-    font-weight: 500;
-    font-size: 14px;
-    margin-right: 10px;
-    color: #0C2A75;
+  font-weight: 500;
+  font-size: 14px;
+  margin-right: 10px;
+  color: #0c2a75;
 }
 
 .info__close {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    margin-left: auto;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .info__close path {
-    fill: #0C2A75;
+  fill: #0c2a75;
 }
 .fa-solid {
-    color: white;
+  color: white;
 }
 .info {
-    z-index: 10000;
-    width: max-content;
-    height: 50px;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: -50px;
+  z-index: 10000;
+  width: max-content;
+  height: 50px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -50px;
 
-    background-color: white;
-    color: var(--black-white);
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: var(--border);
+  background-color: white;
+  color: var(--black-white);
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: var(--border);
 
-    /* Animation */
-    animation: toast_slide .5s; /*Durée totale de l'animation (2.5s slide in + 2.5s slide out)*/
-    animation-fill-mode: both; /* Garde le style final après l'animation */
+  /* Animation */
+  animation: toast_slide 0.5s; /*Durée totale de l'animation (2.5s slide in + 2.5s slide out)*/
+  animation-fill-mode: both; /* Garde le style final après l'animation */
 }
 
 @keyframes toast_slide {
-    0% {transform: translateY(0px); opacity: 0%;}
-    100% {transform: translateY(70px); opacity: 100%;}
+  0% {
+    transform: translateY(0px);
+    opacity: 0%;
+  }
+  100% {
+    transform: translateY(70px);
+    opacity: 100%;
+  }
 }
-
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 tr:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }

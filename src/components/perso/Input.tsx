@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent } from "react";
 
 interface InputProps {
   htmlFor: string;
@@ -11,11 +11,29 @@ interface InputProps {
   accept?: string;
 }
 
-function CustomInput({ htmlFor, labelValue, InputName, InputId, type, value, onChange, accept }: InputProps) {
+function CustomInput({
+  htmlFor,
+  labelValue,
+  InputName,
+  InputId,
+  type,
+  value,
+  onChange,
+  accept,
+}: InputProps) {
   return (
     <div className="form">
       <label htmlFor={htmlFor}>{labelValue} :</label>
-      <input className="input" type={type} name={InputName} id={InputId} value={value} onChange={onChange} accept={accept} required />
+      <input
+        className="input"
+        type={type}
+        name={InputName}
+        id={InputId}
+        value={value}
+        onChange={onChange}
+        accept={accept}
+        required
+      />
       <span className="input-border"></span>
     </div>
   );

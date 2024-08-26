@@ -26,7 +26,10 @@ function Home() {
         const data = await response.json();
 
         // Vérification du message dans la réponse
-        if ('message' in data && data.message === "Pas d'annonces disponibles") {
+        if (
+          "message" in data &&
+          data.message === "Pas d'annonces disponibles"
+        ) {
           setError(data.message);
         } else {
           setNewsData(data);

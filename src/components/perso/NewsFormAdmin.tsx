@@ -29,7 +29,9 @@ const AddNewsForm: React.FC = () => {
     date: "",
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value, type } = e.target;
     if (type === "file") {
       const target = e.target as HTMLInputElement; // Cast e.target en HTMLInputElement
@@ -37,13 +39,13 @@ const AddNewsForm: React.FC = () => {
       if (files && files.length > 0) {
         setFormData({
           ...formData,
-          [name]: files[0] // Stocker le premier fichier
+          [name]: files[0], // Stocker le premier fichier
         });
       }
     } else {
       setFormData({
         ...formData,
-        [name]: value
+        [name]: value,
       });
     }
   };
@@ -61,12 +63,12 @@ const AddNewsForm: React.FC = () => {
     }
 
     try {
-      const response = await fetch('http://esport/src/php/Member/addNews.php', {
-        method: 'POST',
-        body: form
+      const response = await fetch("http://esport/src/php/Member/addNews.php", {
+        method: "POST",
+        body: form,
       });
       console.log(form);
-      
+
       const result = await response.json();
       if (result.success) {
         notify_ok("L'actualité à bien été ajouté !");
@@ -78,13 +80,15 @@ const AddNewsForm: React.FC = () => {
           date: "",
         });
       } else {
-        notify_err("Nous sommes désolé il y a eu une erreur :" + result.message);
-        console.log('Erreur : ' + result.message);
+        notify_err(
+          "Nous sommes désolé il y a eu une erreur :" + result.message
+        );
+        console.log("Erreur : " + result.message);
       }
     } catch (error) {
       notify_err("Nous sommes désolé il y a eu une erreur :" + error);
-      console.error('Erreur :', error);
-      console.log('Erreur lors de l\'ajout de l\'actualité.');
+      console.error("Erreur :", error);
+      console.log("Erreur lors de l'ajout de l'actualité.");
     }
   };
   const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
@@ -93,7 +97,11 @@ const AddNewsForm: React.FC = () => {
     toast.error(text);
   return (
     <div>
-      <form onSubmit={handleSubmit} className="news-form form_container w-1/3 h-min" encType="multipart/form-data">
+      <form
+        onSubmit={handleSubmit}
+        className="news-form form_container w-1/3 h-min"
+        encType="multipart/form-data"
+      >
         <div className="form_control">
           <Input
             htmlFor="image"
@@ -103,7 +111,6 @@ const AddNewsForm: React.FC = () => {
             onChange={handleChange}
             type="file"
             accept="image/*"
-            
           />
           <Input
             htmlFor="title"
@@ -142,16 +149,11 @@ const AddNewsForm: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        <Button
-          type="submit"
-          classValue="submit"
-          text="Ajouter l'actualité"
-        />
+        <Button type="submit" classValue="submit" text="Ajouter l'actualité" />
       </form>
-      <Toaster position="bottom-right"/>
+      <Toaster position="bottom-right" />
     </div>
   );
 };
 
 export default AddNewsForm;
-

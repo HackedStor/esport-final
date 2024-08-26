@@ -1,45 +1,39 @@
-"use client"
+"use client";
 
-import { Activity } from "lucide-react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { Activity } from "lucide-react";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../../ui/chart"
+} from "../../ui/chart";
 const chartData = [
-  { Weeks: "Semaine 1", Tm: 10},
-  { Weeks: "Semaine 2", Tm: 10},
-  { Weeks: "Semaine 3", Tm: 20},
-  { Weeks: "Semaine 4", Tm: 10},
-  { Weeks: "Semaine 5", Tm: 20},
-]
+  { Weeks: "Semaine 1", Tm: 10 },
+  { Weeks: "Semaine 2", Tm: 10 },
+  { Weeks: "Semaine 3", Tm: 20 },
+  { Weeks: "Semaine 4", Tm: 10 },
+  { Weeks: "Semaine 5", Tm: 20 },
+];
 
 const chartConfig = {
   Tm: {
     label: "Tm",
     color: "hsl(var(--chart-1))",
     icon: Activity,
-  }
-} satisfies ChartConfig
-
+  },
+} satisfies ChartConfig;
 
 export function AreaChartStepTm() {
   return (
     <Card className="border-none rounded-[1vh]">
-    <CardHeader>
-      <CardTitle>Perfomances sur Trackmania</CardTitle>
-    </CardHeader>
+      <CardHeader>
+        <CardTitle>Perfomances sur Trackmania</CardTitle>
+      </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}  className="w-[40vw]">
+        <ChartContainer config={chartConfig} className="w-[40vw]">
           <AreaChart
             accessibilityLayer
             data={chartData}
@@ -71,5 +65,5 @@ export function AreaChartStepTm() {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

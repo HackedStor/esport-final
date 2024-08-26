@@ -1,14 +1,17 @@
-import React, { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { ReactNode } from "react";
+import { Navigate } from "react-router-dom";
 
 interface PrivateRouteProps {
   children: ReactNode;
   isAdminRoute: boolean;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, isAdminRoute }) => {
-  const email = localStorage.getItem('email');
-  const isAdmin = localStorage.getItem('is_admin') === '1';
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  children,
+  isAdminRoute,
+}) => {
+  const email = localStorage.getItem("email");
+  const isAdmin = localStorage.getItem("is_admin") === "1";
 
   if (!email) {
     // L'utilisateur n'est pas connecté

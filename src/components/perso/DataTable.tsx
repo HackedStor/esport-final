@@ -1,10 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
-import * as React from "react"
+import * as React from "react";
 import {
   // CaretSortIcon,
   ChevronDownIcon,
   DotsHorizontalIcon,
-} from "@radix-ui/react-icons"
+} from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -16,9 +16,9 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 
-import { Button } from "../ui/button"
+import { Button } from "../ui/button";
 // import { Checkbox } from "../ui/checkbox"
 import {
   DropdownMenu,
@@ -28,9 +28,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu"
+} from "../ui/dropdown-menu";
 import { CheckIcon, Cross2Icon } from "@radix-ui/react-icons";
-import { Input } from "../ui/input"
+import { Input } from "../ui/input";
 import {
   Table,
   TableBody,
@@ -38,16 +38,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table"
-import "../../assets/css/Dashboard.css"
+} from "../ui/table";
+import "../../assets/css/Dashboard.css";
 
 export type Player = {
-  id: number
-  nom: string
-  prenom: string
-  classe: string
-  date: string
-}
+  id: number;
+  nom: string;
+  prenom: string;
+  classe: string;
+  date: string;
+};
 
 export const columns: ColumnDef<Player>[] = [
   {
@@ -58,12 +58,16 @@ export const columns: ColumnDef<Player>[] = [
   {
     accessorKey: "prenom",
     header: "Prénom",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("prenom")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("prenom")}</div>
+    ),
   },
   {
     accessorKey: "classe",
     header: "Classe",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("classe")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("classe")}</div>
+    ),
   },
   {
     accessorKey: "date",
@@ -86,12 +90,16 @@ export const columns: ColumnDef<Player>[] = [
             <DropdownMenuLabel>Actions possible</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(player.id.toString())}
+              onClick={() =>
+                navigator.clipboard.writeText(player.id.toString())
+              }
             >
               <CheckIcon className="mr-2 h-4 w-4" /> Présent
             </DropdownMenuItem>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(player.nom.toString())}
+              onClick={() =>
+                navigator.clipboard.writeText(player.nom.toString())
+              }
             >
               <Cross2Icon className="mr-2 h-4 w-4" /> Absent
             </DropdownMenuItem>
@@ -99,15 +107,18 @@ export const columns: ColumnDef<Player>[] = [
         </DropdownMenu>
       );
     },
-  }
-]
+  },
+];
 
 export function DataTableDemo() {
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [data, setData] = React.useState<Player[]>([])
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
+  const [data, setData] = React.useState<Player[]>([]);
 
   const table = useReactTable({
     data,
@@ -126,16 +137,18 @@ export function DataTableDemo() {
       columnVisibility,
       rowSelection,
     },
-  })
+  });
 
   React.useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://esport/src/php/Member/getPlayerNextSession.php")
-      const result = await response.json()
-      setData(result)
+      const response = await fetch(
+        "http://esport/src/php/Member/getPlayerNextSession.php"
+      );
+      const result = await response.json();
+      setData(result);
     }
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   return (
     <div className="w-full">
@@ -163,9 +176,7 @@ export function DataTableDemo() {
                   key={column.id}
                   className="capitalize"
                   checked={column.getIsVisible()}
-                  onCheckedChange={(value) =>
-                    column.toggleVisibility(!!value)
-                  }
+                  onCheckedChange={(value) => column.toggleVisibility(!!value)}
                 >
                   {column.id}
                 </DropdownMenuCheckboxItem>
@@ -245,5 +256,5 @@ export function DataTableDemo() {
         </div>
       </div>
     </div>
-  )
+  );
 }

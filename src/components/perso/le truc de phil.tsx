@@ -16,7 +16,11 @@ const FormComponent: React.FC = () => {
           <div>
             <form>
               <label htmlFor="input1">Entrée pour Option 1 :</label>
-              <input id="input1" type="text" placeholder="Entrez un texte pour Option 1" />
+              <input
+                id="input1"
+                type="text"
+                placeholder="Entrez un texte pour Option 1"
+              />
             </form>
             <textarea rows={4} placeholder="Commentaires pour Option 1" />
           </div>
@@ -26,9 +30,16 @@ const FormComponent: React.FC = () => {
           <div>
             <form>
               <label htmlFor="input2">Entrée spécifique pour Option 2 :</label>
-              <input id="input2" type="number" placeholder="Entrez un nombre pour Option 2" />
+              <input
+                id="input2"
+                type="number"
+                placeholder="Entrez un nombre pour Option 2"
+              />
             </form>
-            <textarea rows={4} placeholder="Commentaires détaillés pour Option 2" />
+            <textarea
+              rows={4}
+              placeholder="Commentaires détaillés pour Option 2"
+            />
           </div>
         );
       case "Option 3":
@@ -50,7 +61,11 @@ const FormComponent: React.FC = () => {
           <div>
             <form>
               <label htmlFor="input4">Entrée texte pour Option 4 :</label>
-              <input id="input4" type="text" placeholder="Texte pour Option 4" />
+              <input
+                id="input4"
+                type="text"
+                placeholder="Texte pour Option 4"
+              />
             </form>
             <textarea rows={4} placeholder="Commentaires pour Option 4" />
           </div>
@@ -60,7 +75,11 @@ const FormComponent: React.FC = () => {
           <div>
             <form>
               <label htmlFor="input5">Entrée spécifique pour Option 5 :</label>
-              <input id="input5" type="email" placeholder="Email pour Option 5" />
+              <input
+                id="input5"
+                type="email"
+                placeholder="Email pour Option 5"
+              />
             </form>
             <textarea rows={4} placeholder="Commentaires pour Option 5" />
           </div>
@@ -70,7 +89,11 @@ const FormComponent: React.FC = () => {
           <div>
             <form>
               <label htmlFor="input6">Entrée numérique pour Option 6 :</label>
-              <input id="input6" type="number" placeholder="Numéro pour Option 6" />
+              <input
+                id="input6"
+                type="number"
+                placeholder="Numéro pour Option 6"
+              />
             </form>
             <textarea rows={4} placeholder="Commentaires pour Option 6" />
           </div>
@@ -80,9 +103,16 @@ const FormComponent: React.FC = () => {
           <div>
             <form>
               <label htmlFor="input7">Texte libre pour Option 7 :</label>
-              <textarea id="input7" rows={2} placeholder="Texte libre pour Option 7"></textarea>
+              <textarea
+                id="input7"
+                rows={2}
+                placeholder="Texte libre pour Option 7"
+              ></textarea>
             </form>
-            <textarea rows={4} placeholder="Commentaires généraux pour Option 7" />
+            <textarea
+              rows={4}
+              placeholder="Commentaires généraux pour Option 7"
+            />
           </div>
         );
       default:

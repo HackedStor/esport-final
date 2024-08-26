@@ -1,36 +1,30 @@
-"use client"
+"use client";
 
-import { Activity } from "lucide-react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { Activity } from "lucide-react";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../../ui/chart"
+} from "../../ui/chart";
 const chartData = [
-  { Weeks: "Semaine 1", RL: 10},
-  { Weeks: "Semaine 2", RL: 20},
-  { Weeks: "Semaine 3", RL: 20},
-  { Weeks: "Semaine 4", RL: 10},
-  { Weeks: "Semaine 5", RL: 20},
-]
+  { Weeks: "Semaine 1", RL: 10 },
+  { Weeks: "Semaine 2", RL: 20 },
+  { Weeks: "Semaine 3", RL: 20 },
+  { Weeks: "Semaine 4", RL: 10 },
+  { Weeks: "Semaine 5", RL: 20 },
+];
 
 const chartConfig = {
   RL: {
     label: "RL",
     color: "hsl(var(--chart-1))",
     icon: Activity,
-  }
-} satisfies ChartConfig
-
+  },
+} satisfies ChartConfig;
 
 export function AreaChartStepRL() {
   return (
@@ -39,7 +33,7 @@ export function AreaChartStepRL() {
         <CardTitle>Perfomances sur Rocket League</CardTitle>
       </CardHeader>
       <CardContent>
-      <ChartContainer config={chartConfig} className="w-[40vw]">
+        <ChartContainer config={chartConfig} className="w-[40vw]">
           <AreaChart
             accessibilityLayer
             data={chartData}
@@ -71,5 +65,5 @@ export function AreaChartStepRL() {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

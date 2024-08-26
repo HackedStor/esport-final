@@ -6,7 +6,10 @@ interface ValoScoreOtherTeamProps {
   onChange: (value: string) => void;
 }
 
-export function ValoScoreOtherTeam({ value = "", onChange }: ValoScoreOtherTeamProps) {
+export function ValoScoreOtherTeam({
+  value = "",
+  onChange,
+}: ValoScoreOtherTeamProps) {
   const [isValid, setIsValid] = React.useState(true);
 
   const validateScore = (score: string) => {
@@ -36,4 +39,3 @@ export function ValoScoreOtherTeam({ value = "", onChange }: ValoScoreOtherTeamP
     </div>
   );
 }
-

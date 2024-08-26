@@ -11,8 +11,7 @@ import {
   CardTitle,
 } from "../../ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
-import  ValoCard from "../../perso/gameProfileForms/valo";
-
+import ValoCard from "../../perso/gameProfileForms/valo";
 
 const Dashboard: React.FC = () => {
   return (

@@ -1,21 +1,20 @@
 .AuthSection {
-    display: flex;
+  display: flex;
 }
 .AuthSection .cus_container .form_container h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .UserAuth {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .UserAuth {
+    flex-direction: row;
   }
-  
-  @media (min-width: 768px) {
-    .UserAuth {
-      flex-direction: row;
-    }
-  }
-  
+}

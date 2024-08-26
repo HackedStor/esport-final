@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent } from "react";
 
 interface InputDateProps {
   htmlFor: string;
@@ -9,7 +9,14 @@ interface InputDateProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function InputDate({ htmlFor, labelValue, InputName, InputId, value, onChange }: InputDateProps) {
+function InputDate({
+  htmlFor,
+  labelValue,
+  InputName,
+  InputId,
+  value,
+  onChange,
+}: InputDateProps) {
   return (
     <div className="form">
       <label htmlFor={htmlFor}>{labelValue} :</label>

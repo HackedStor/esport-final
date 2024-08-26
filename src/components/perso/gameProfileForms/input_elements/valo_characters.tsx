@@ -47,7 +47,10 @@ const agents = [
 
 export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedAgent, setSelectedAgent] = React.useState<{ name: string; class: string } | null>(null);
+  const [selectedAgent, setSelectedAgent] = React.useState<{
+    name: string;
+    class: string;
+  } | null>(null);
 
   const handleSelectAgent = (agent: { name: string; class: string }) => {
     setSelectedAgent(agent);
@@ -82,7 +85,9 @@ export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      selectedAgent?.name === agent.name ? "opacity-100" : "opacity-0"
+                      selectedAgent?.name === agent.name
+                        ? "opacity-100"
+                        : "opacity-0"
                     )}
                   />
                   {agent.name}

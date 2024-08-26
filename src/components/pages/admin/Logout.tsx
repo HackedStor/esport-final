@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Logout: React.FC = () => {
   const navigate = useNavigate();
@@ -7,10 +7,10 @@ const Logout: React.FC = () => {
   useEffect(() => {
     const performLogout = async () => {
       try {
-        const response = await fetch('http://esport/src/php/Auth/logout.php', {
-          method: 'POST',
+        const response = await fetch("http://esport/src/php/Auth/logout.php", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
@@ -21,10 +21,10 @@ const Logout: React.FC = () => {
         const result = await response.json();
 
         if (result.success) {
-          localStorage.removeItem('email');
-          navigate('/');
+          localStorage.removeItem("email");
+          navigate("/");
         } else {
-          console.error('La déconnexion a échoué :', result.message);
+          console.error("La déconnexion a échoué :", result.message);
         }
       } catch (error) {
         console.error("Une erreur s'est produite :", error);
@@ -34,11 +34,7 @@ const Logout: React.FC = () => {
     performLogout();
   }, [navigate]);
 
-  return (
-    <div>
-      Déconnexion en cours...
-    </div>
-  );
+  return <div>Déconnexion en cours...</div>;
 };
 
 export default Logout;

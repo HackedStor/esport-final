@@ -1,10 +1,14 @@
-import React, { FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../assets/css/login.css";
-import Input from './Input';
-import Button from './Button';
-import toast, { Renderable, Toast, Toaster, ValueFunction } from 'react-hot-toast';
-
+import Input from "./Input";
+import Button from "./Button";
+import toast, {
+  Renderable,
+  Toast,
+  Toaster,
+  ValueFunction,
+} from "react-hot-toast";
 
 type FormData = {
   Email: string;
@@ -20,13 +24,15 @@ const FormAuth: React.FC = () => {
 
     const formData = new FormData(e.target as HTMLFormElement);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formDataObject: FormData = Object.fromEntries(formData.entries()) as any;
+    const formDataObject: FormData = Object.fromEntries(
+      formData.entries()
+    ) as any;
 
     try {
       const response = await fetch(url, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formDataObject),
       });
@@ -37,14 +43,14 @@ const FormAuth: React.FC = () => {
 
       const result = await response.json();
 
-      if (url.includes('register')) {
-        if(result.success) notify_ok(result.success)
-        else if (result.error) notify_err(result.error)
-        else notify_neutral(result.message)
+      if (url.includes("register")) {
+        if (result.success) notify_ok(result.success);
+        else if (result.error) notify_err(result.error);
+        else notify_neutral(result.message);
       } else {
         if (result.success) {
-          localStorage.setItem('email', result.email);
-          localStorage.setItem('is_admin', result.is_admin);
+          localStorage.setItem("email", result.email);
+          localStorage.setItem("is_admin", result.is_admin);
           notify_ok(result.message);
           navigate(result.redirectUrl);
         } else {
@@ -57,15 +63,25 @@ const FormAuth: React.FC = () => {
     }
   };
 
-  const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.success(text)
-  const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.error(text)
-  const notify_neutral = (text: Renderable | ValueFunction<Renderable, Toast>) => toast(text)
+  const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+    toast.success(text);
+  const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+    toast.error(text);
+  const notify_neutral = (
+    text: Renderable | ValueFunction<Renderable, Toast>
+  ) => toast(text);
 
   return (
-    <div className='AuthSection'>
+    <div className="AuthSection">
       <div className="cus_container">
-        <form className="form_container" method="post" onSubmit={(e) => handleSubmit(e, 'http://esport/src/php/Auth/register.php')}>
-          <h1 className='text-4xl my-5 register-button'>Inscription</h1>
+        <form
+          className="form_container"
+          method="post"
+          onSubmit={(e) =>
+            handleSubmit(e, "http://esport/src/php/Auth/register.php")
+          }
+        >
+          <h1 className="text-4xl my-5 register-button">Inscription</h1>
           <div className="form_control">
             <Input
               htmlFor="Email"
@@ -89,16 +105,18 @@ const FormAuth: React.FC = () => {
             InputId="Password"
             type="password"
           />
-          <Button
-            type="submit"
-            classValue="submit"
-            text="S'inscrire"
-          />
+          <Button type="submit" classValue="submit" text="S'inscrire" />
         </form>
       </div>
       <div className="cus_container">
-        <form className="form_container" method="post" onSubmit={(e) => handleSubmit(e, 'http://esport/src/php/Auth/login.php')}>
-          <h1 className='text-4xl my-5 login-button'>Connexion</h1>
+        <form
+          className="form_container"
+          method="post"
+          onSubmit={(e) =>
+            handleSubmit(e, "http://esport/src/php/Auth/login.php")
+          }
+        >
+          <h1 className="text-4xl my-5 login-button">Connexion</h1>
           <Input
             htmlFor="Email"
             labelValue="Email"
@@ -113,11 +131,7 @@ const FormAuth: React.FC = () => {
             InputId="Password"
             type="password"
           />
-          <Button
-            type="submit"
-            classValue="submit"
-            text="Se connecter"
-          />
+          <Button type="submit" classValue="submit" text="Se connecter" />
         </form>
       </div>
       <Toaster />

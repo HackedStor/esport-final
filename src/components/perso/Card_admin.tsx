@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface CardProps {
   id: number;
@@ -11,21 +11,33 @@ interface CardProps {
   onActionComplete: () => void; // Appelle la fonction de rafraîchissement
 }
 
-const Card: React.FC<CardProps> = ({ id, image, title, description, date, buttonSup, initialVisibility, onActionComplete }) => {
+const Card: React.FC<CardProps> = ({
+  id,
+  image,
+  title,
+  description,
+  date,
+  buttonSup,
+  initialVisibility,
+  onActionComplete,
+}) => {
   const [isVisible, setIsVisible] = useState(initialVisibility);
   const [isModalOpen, setIsModalOpen] = useState(false); // État pour gérer la popup
 
   const handleDelete = async (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     try {
-      const response = await fetch('http://esport/src/php/Member/deleteNews.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id })
-      });
+      const response = await fetch(
+        "http://esport/src/php/Member/deleteNews.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+        }
+      );
 
       const result = await response.json();
       if (response.ok) {
@@ -35,21 +47,24 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
         console.error(result.message);
       }
     } catch (error) {
-      console.error('Erreur de réseau :', error);
+      console.error("Erreur de réseau :", error);
     }
   };
 
   const handleChangeVisibility = async (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     try {
-      const response = await fetch('http://esport/src/php/Member/changeNewsVisibility.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id, is_visible: isVisible ? 0 : 1 })
-      });
+      const response = await fetch(
+        "http://esport/src/php/Member/changeNewsVisibility.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, is_visible: isVisible ? 0 : 1 }),
+        }
+      );
 
       const result = await response.json();
       if (response.ok) {
@@ -60,7 +75,7 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
         console.error(result.message);
       }
     } catch (error) {
-      console.error('Erreur de réseau :', error);
+      console.error("Erreur de réseau :", error);
     }
   };
 
@@ -72,7 +87,11 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
     <div className="news-card">
       <img src={image} alt={title} className="news-card__image" />
       <div className="news-card__content">
-        <h2 className="news-card__title" onClick={toggleModal} style={{ cursor: 'pointer' }}>
+        <h2
+          className="news-card__title"
+          onClick={toggleModal}
+          style={{ cursor: "pointer" }}
+        >
           {title}
         </h2>
         <p className="news-card__date">{date}</p>
@@ -80,10 +99,12 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
       </div>
       <div className="news-card__footer">
         <form onSubmit={handleDelete}>
-          <button type='submit'>{buttonSup}</button>
+          <button type="submit">{buttonSup}</button>
         </form>
         <form onSubmit={handleChangeVisibility}>
-          <button type='submit'>{isVisible ? 'Cacher l\'actus' : 'Afficher l\'actus'}</button>
+          <button type="submit">
+            {isVisible ? "Cacher l'actus" : "Afficher l'actus"}
+          </button>
         </form>
       </div>
 
@@ -91,10 +112,12 @@ const Card: React.FC<CardProps> = ({ id, image, title, description, date, button
       {isModalOpen && (
         <div className="modal-overlay" onClick={toggleModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2 className='modalH2'>{title}</h2>
-            <p className='modalP'>{date}</p>
-            <p className='modalText'>{description}</p>
-            <button onClick={toggleModal} className='modalClose'>Fermer</button>
+            <h2 className="modalH2">{title}</h2>
+            <p className="modalP">{date}</p>
+            <p className="modalText">{description}</p>
+            <button onClick={toggleModal} className="modalClose">
+              Fermer
+            </button>
           </div>
         </div>
       )}

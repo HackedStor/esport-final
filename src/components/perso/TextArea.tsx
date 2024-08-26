@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent } from "react";
 
 interface TextAreaProps {
   htmlFor: string;
@@ -9,7 +9,14 @@ interface TextAreaProps {
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ htmlFor, labelValue, TextAreaName, TextAreaId, value, onChange }) => {
+const TextArea: React.FC<TextAreaProps> = ({
+  htmlFor,
+  labelValue,
+  TextAreaName,
+  TextAreaId,
+  value,
+  onChange,
+}) => {
   return (
     <div className="form">
       <label htmlFor={htmlFor}>{labelValue} :</label>
