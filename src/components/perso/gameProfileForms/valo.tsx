@@ -10,8 +10,7 @@ import { Button } from "../../ui/button";
 
 const ValoCard: React.FC = () => {
   const [userId, setUserId] = React.useState<string>("");
-  // const [userId, setUserId] = useState<number | undefined>(undefined);
-  const [agent, setAgent] = useState<string>("");
+  const [agent, setAgent] = useState<{ name: string; class: string } | null>(null);
   const [kda, setKda] = useState<string>("");
   const [score, setScore] = useState<string>("");
   const [otherTeamScore, setOtherTeamScore] = useState<string>("");
@@ -52,7 +51,7 @@ const ValoCard: React.FC = () => {
   }, []);
 
   const submitValorantStats = async () => {
-    if (!userId) return;
+    if (!userId || !agent) return;
 
     try {
       const response = await fetch("http://esport/src/php/Member/GamesForms/insert_valorant_stats.php", {
@@ -62,7 +61,8 @@ const ValoCard: React.FC = () => {
         },
         body: JSON.stringify({
           user_id: userId,
-          agent_name: agent,
+          agent_name: agent.name,
+          agent_class: agent.class, // Ajoutez la classe de l'agent
           kda: kda,
           score: score,
           otherTeamScore: otherTeamScore
@@ -80,20 +80,18 @@ const ValoCard: React.FC = () => {
     }
   };
 
-  
   return (
     <div className="valoCard">
       <AreaChartStepValo />
       <form className="ValoInputs flex flex-wrap justify-between w-[90%]" onSubmit={(e) => { e.preventDefault(); submitValorantStats(); }}>
         <div className='flex flex-col gap-3'>
-          <ValoAgents onAgentChange={setAgent}/>
-          <ValoKDA  value={kda} onChange={setKda}/>
+          <ValoAgents onAgentChange={setAgent} />
+          <ValoKDA value={kda} onChange={setKda} />
         </div>
         <div className='flex flex-col gap-3'>
-          <ValoScore value={score} onChange={setScore}/>
-          <ValoScoreOtherTeam value={otherTeamScore} onChange={setOtherTeamScore}/>
+          <ValoScore value={score} onChange={setScore} />
+          <ValoScoreOtherTeam value={otherTeamScore} onChange={setOtherTeamScore} />
         </div>
-        
         <Button>Sauvegarder</Button>
       </form>
     </div>

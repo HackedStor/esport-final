@@ -27,18 +27,19 @@ $response = [];
 
 if ($data) {
     // Valider les données
-    if (isset($data['user_id']) && isset($data['agent_name']) && isset($data['kda']) && isset($data['score']) && isset($data['otherTeamScore'])) {
+    if (isset($data['user_id']) && isset($data['agent_name']) && isset($data['agent_class']) && isset($data['kda']) && isset($data['score']) && isset($data['otherTeamScore'])) {
         try {
             // Préparer une requête SQL pour insérer les données
-            $stmt = $conn->prepare("INSERT INTO valorant_stats (user_id, agent_name, kda, score, other_team_score) VALUES (:user_id, :agent_name, :kda, :score, :otherTeamScore)");
+            $stmt = $conn->prepare("INSERT INTO valorant_stats (user_id, agent_name, agent_class, kda, score, other_team_score) VALUES (:user_id, :agent_name, :agent_class, :kda, :score, :otherTeamScore)");
 
             // Lier les paramètres et exécuter la requête
             $stmt->bindParam(':user_id', $data['user_id'], PDO::PARAM_INT);
             $stmt->bindParam(':agent_name', $data['agent_name'], PDO::PARAM_STR);
+            $stmt->bindParam(':agent_class', $data['agent_class'], PDO::PARAM_STR);
             $stmt->bindParam(':kda', $data['kda'], PDO::PARAM_STR);
             $stmt->bindParam(':score', $data['score'], PDO::PARAM_STR);
             $stmt->bindParam(':otherTeamScore', $data['otherTeamScore'], PDO::PARAM_STR);
-            
+
             if ($stmt->execute()) {
                 $response = [
                     'success' => true,

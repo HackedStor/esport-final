@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../../ui/popover";
 import { cn } from "../../../../lib/utils";
 
 interface ValoAgentsProps {
-  onAgentChange: (agent: string) => void;
+  onAgentChange: (agent: { name: string; class: string }) => void;
 }
 
 const agents = [
@@ -47,9 +47,9 @@ const agents = [
 
 export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedAgent, setSelectedAgent] = React.useState<string | null>(null);
+  const [selectedAgent, setSelectedAgent] = React.useState<{ name: string; class: string } | null>(null);
 
-  const handleSelectAgent = (agent: string) => {
+  const handleSelectAgent = (agent: { name: string; class: string }) => {
     setSelectedAgent(agent);
     onAgentChange(agent); // Remonte la valeur au parent
     setOpen(false);
@@ -64,7 +64,7 @@ export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {selectedAgent ? selectedAgent : "Choisissez un agent..."}
+          {selectedAgent ? selectedAgent.name : "Choisissez un agent..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -77,12 +77,12 @@ export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
               {agents.map((agent) => (
                 <CommandItem
                   key={agent.name}
-                  onSelect={() => handleSelectAgent(agent.name)}
+                  onSelect={() => handleSelectAgent(agent)}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      selectedAgent === agent.name ? "opacity-100" : "opacity-0"
+                      selectedAgent?.name === agent.name ? "opacity-100" : "opacity-0"
                     )}
                   />
                   {agent.name}
