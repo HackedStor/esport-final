@@ -39,7 +39,7 @@ const chartConfig = {
 
 export function AreaChartStepValo() {
   return (
-    <Card>
+    <Card className="border-none rounded-[1vh]">
       <CardHeader>
         <CardTitle>Area Chart - Stacked</CardTitle>
         <CardDescription>
@@ -47,7 +47,7 @@ export function AreaChartStepValo() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="w-[40vw]">
           <AreaChart
             accessibilityLayer
             data={chartData}
