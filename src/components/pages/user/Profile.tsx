@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { slide as Menu } from "react-burger-menu";
 import "../../../assets/css/Dashboard.css";
-import { Button } from "../../ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../../ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import ValoCard from "../../perso/gameProfileForms/valo";
+import LolCard from "../../perso/gameProfileForms/lol";
 
 const Dashboard: React.FC = () => {
   return (
@@ -46,10 +45,9 @@ const Dashboard: React.FC = () => {
                     Changez votre profil League of Legend
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">trucs a mettre</CardContent>
-                <CardFooter>
-                  <Button>Sauvegarder</Button>
-                </CardFooter>
+                <CardContent className="space-y-2">
+                  <LolCard />
+                </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="valo">
@@ -63,9 +61,6 @@ const Dashboard: React.FC = () => {
                 <CardContent className="space-y-2">
                   <ValoCard />
                 </CardContent>
-                {/* <CardFooter>
-                  <Button>Sauvegarder</Button>
-                </CardFooter> */}
               </Card>
             </TabsContent>
             <TabsContent value="tm">
@@ -77,9 +72,6 @@ const Dashboard: React.FC = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">trucs a mettre</CardContent>
-                <CardFooter>
-                  <Button>Sauvegarder</Button>
-                </CardFooter>
               </Card>
             </TabsContent>
             <TabsContent value="mk">
@@ -91,9 +83,6 @@ const Dashboard: React.FC = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">trucs a mettre</CardContent>
-                <CardFooter>
-                  <Button>Sauvegarder</Button>
-                </CardFooter>
               </Card>
             </TabsContent>
             <TabsContent value="smash">
@@ -105,9 +94,6 @@ const Dashboard: React.FC = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">trucs a mettre</CardContent>
-                <CardFooter>
-                  <Button>Sauvegarder</Button>
-                </CardFooter>
               </Card>
             </TabsContent>
             <TabsContent value="fc">
@@ -117,9 +103,6 @@ const Dashboard: React.FC = () => {
                   <CardDescription>Changez votre profil FC24</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">trucs a mettre</CardContent>
-                <CardFooter>
-                  <Button>Sauvegarder</Button>
-                </CardFooter>
               </Card>
             </TabsContent>
           </Tabs>
