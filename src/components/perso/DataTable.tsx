@@ -30,6 +30,8 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { CheckIcon, Cross2Icon } from "@radix-ui/react-icons";
+import { FaUserCheck, FaUserMinus  } from "react-icons/fa";
+import { BiSolidFlagAlt } from "react-icons/bi";
 import { Input } from "../ui/input";
 import {
   Table,
@@ -94,14 +96,20 @@ export const columns: ColumnDef<Player>[] = [
                 navigator.clipboard.writeText(player.id.toString())
               }
             >
-              <CheckIcon className="mr-2 h-4 w-4" /> Présent
+              {/* <CheckIcon className="mr-2 h-4 w-4" /> Présent */}
+              <FaUserCheck className="mr-2 h-4 w-4" /> Présent
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
                 navigator.clipboard.writeText(player.nom.toString())
               }
             >
-              <Cross2Icon className="mr-2 h-4 w-4" /> Absent
+              {/* <Cross2Icon className="mr-2 h-4 w-4" /> Absent */}
+              <FaUserMinus className="mr-2 h-4 w-4" /> Absent
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <BiSolidFlagAlt  className="mr-2 h-4 w-4" /> Inscrire l'utilisateur sur la liste noire
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
