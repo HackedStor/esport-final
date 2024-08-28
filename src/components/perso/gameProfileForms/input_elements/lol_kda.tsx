@@ -2,12 +2,12 @@ import * as React from "react";
 import { Input } from "../../../ui/input";
 import "../../../../assets/css/Dashboard.css"
 
-interface ValoKDAProps {
+interface LolKDAProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export function ValoKDA({ value = "", onChange }: ValoKDAProps) {
+export function LolKDA({ value = "", onChange }: LolKDAProps) {
   const [isValid, setIsValid] = React.useState(true);
 
   const validateKDA = (kda: string) => {

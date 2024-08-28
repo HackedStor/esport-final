@@ -65,9 +65,9 @@ export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[200px] justify-between TableModal"
         >
-          {selectedAgent ? selectedAgent.name : "Choisissez un agent..."}
+          {selectedAgent ? selectedAgent.name : "Agent..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

@@ -1,36 +1,37 @@
-"use client";
-
-import { Activity } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
+"use client"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../ui/card"
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../../ui/chart";
+} from "../../ui/chart"
 const chartData = [
-  { Weeks: "Semaine 1", MarioKart: 10 },
-  { Weeks: "Semaine 2", MarioKart: 10 },
-  { Weeks: "Semaine 3", MarioKart: 20 },
-  { Weeks: "Semaine 4", MarioKart: 10 },
-  { Weeks: "Semaine 5", MarioKart: 20 },
-];
-
+  { month: "January", desktop: 186 },
+  { month: "February", desktop: 305 },
+  { month: "March", desktop: 237 },
+  { month: "April", desktop: 73 },
+  { month: "May", desktop: 209 },
+  { month: "June", desktop: 214 },
+]
 const chartConfig = {
-  MarioKart: {
-    label: "MarioKart",
-    color: "hsl(var(--chart-1))",
-    icon: Activity,
+  desktop: {
+    label: "Desktop",
+    color: "#cc1faf",
   },
-} satisfies ChartConfig;
-
+} satisfies ChartConfig
 export function AreaChartStepMarioKart() {
   return (
     <Card className="border-none rounded-[1vh]">
       <CardHeader>
-        <CardTitle>Perfomances sur Mario Kart 8</CardTitle>
+        <CardTitle>Performances sur Mario Kart</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="w-[40vw]">
@@ -38,32 +39,34 @@ export function AreaChartStepMarioKart() {
             accessibilityLayer
             data={chartData}
             margin={{
-              left: 12,
-              right: 12,
+              left: 5,
+              right: 5,
             }}
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="Weeks"
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 10)}
+              tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent indicator="line" />}
             />
             <Area
-              dataKey="MarioKart"
-              type="step"
-              fill="var(--color-MarioKart)"
+              dataKey="desktop"
+              type="natural"
+              fill="var(--color-desktop)"
               fillOpacity={0.4}
-              stroke="var(--color-MarioKart)"
+              stroke="var(--color-desktop)"
             />
           </AreaChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter>
+      </CardFooter>
     </Card>
-  );
+  )
 }

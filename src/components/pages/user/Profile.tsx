@@ -11,6 +11,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import ValoCard from "../../perso/gameProfileForms/valo";
 import LolCard from "../../perso/gameProfileForms/lol";
+import MkCard from "../../perso/gameProfileForms/mk";
 
 const Dashboard: React.FC = () => {
   return (
@@ -82,7 +83,7 @@ const Dashboard: React.FC = () => {
                     Changez votre profil Mario Kart
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardContent className="space-y-2"><MkCard /></CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="smash">

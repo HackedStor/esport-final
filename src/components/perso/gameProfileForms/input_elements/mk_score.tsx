@@ -1,20 +1,17 @@
 import * as React from "react";
 import { Input } from "../../../ui/input";
 
-interface ValoScoreOtherTeamProps {
+interface MkScoreProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export function ValoScoreOtherTeam({
-  value = "",
-  onChange,
-}: ValoScoreOtherTeamProps) {
+export function MkScore({ value = "", onChange }: MkScoreProps) {
   const [isValid, setIsValid] = React.useState(true);
 
   const validateScore = (score: string) => {
     // Validation pour un score entier positif entre 0 et 99
-    const scorePattern = /^\d{1,2}$/;
+    const scorePattern = /^([0-9]{1,2}:)?([0-5]?[0-9]:)?[0-5][0-9](\.[0-9]{1,3})?$/;
     return scorePattern.test(score);
   };
 
@@ -25,9 +22,9 @@ export function ValoScoreOtherTeam({
   };
 
   return (
-    <div>
+    <div className="w-[15vw]">
       <Input
-        placeholder="Score de l'autre équipe"
+        placeholder="Temps de course"
         value={value}
         onChange={handleChange}
         className="GameInput"
@@ -35,7 +32,7 @@ export function ValoScoreOtherTeam({
         required
       />
       {!isValid && (
-        <p className="text-red-500 mt-2">Score invalide (0 à 99).</p>
+        <p className="text-red-500 mt-2">Temps invalide (e.g: 4:22).</p>
       )}
     </div>
   );

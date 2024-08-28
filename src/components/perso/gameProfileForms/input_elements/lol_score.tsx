@@ -1,15 +1,12 @@
 import * as React from "react";
 import { Input } from "../../../ui/input";
 
-interface ValoScoreOtherTeamProps {
+interface LolScoreProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export function ValoScoreOtherTeam({
-  value = "",
-  onChange,
-}: ValoScoreOtherTeamProps) {
+export function LolScore({ value = "", onChange }: LolScoreProps) {
   const [isValid, setIsValid] = React.useState(true);
 
   const validateScore = (score: string) => {
@@ -25,9 +22,9 @@ export function ValoScoreOtherTeam({
   };
 
   return (
-    <div>
+    <div className="w-[15vw]">
       <Input
-        placeholder="Score de l'autre équipe"
+        placeholder="Score de ton équipe"
         value={value}
         onChange={handleChange}
         className="GameInput"

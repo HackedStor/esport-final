@@ -210,9 +210,9 @@ export function LolChampions({ onChampionChange }: LolChampionsProps) {
           role="combobox"
           aria-expanded={open}
           aria-label="Select a champion"
-          className="w-[200px] justify-between"
+          className="w-[200px] justify-between TableModal"
         >
-          {selectedAgent ? selectedAgent.name : "Choisissez un champion..."}
+          {selectedAgent ? selectedAgent.name : "Champion..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

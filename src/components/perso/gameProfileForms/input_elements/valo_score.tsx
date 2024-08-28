@@ -27,7 +27,7 @@ export function ValoScore({ value = "", onChange }: ValoScoreProps) {
         placeholder="Score de ton équipe"
         value={value}
         onChange={handleChange}
-        className={isValid ? "" : "border-red-500"}
+        className="GameInput"
         name="score"
         required
       />

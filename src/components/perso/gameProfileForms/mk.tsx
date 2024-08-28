@@ -1,23 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-import { LolChampions } from "./input_elements/lol_characters";
-import { LolKDA } from "./input_elements/lol_kda";
-import { LolScore } from "./input_elements/lol_score";
-import { LolScoreOtherTeam } from "./input_elements/lol_score_other_team";
-import { AreaChartStepLol } from "../UserCharts/AreaChartStepLol";
+import { MkMaps } from "./input_elements/mk_maps";
+import { MkScore } from "./input_elements/mk_score";
 import "../../../assets/css/reservation.css";
+import { AreaChartStepMarioKart } from "../UserCharts/AreaChartStepMarioKart";
 import { Button } from "../../ui/button";
+import toast, {
+  Renderable,
+  Toast,
+  Toaster,
+  ValueFunction,
+} from "react-hot-toast";
 
-const LolCard: React.FC = () => {
+const MkCard: React.FC = () => {
   const [userId, setUserId] = React.useState<string>("");
-  const [champion, setChampion] = useState<{
-    name: string;
-    role: string;
-  } | null>(null);
-
-  const [kda, setKda] = useState<string>("");
+  const [map, setMap] = useState<{ name: string } | null>(
+    null
+  );
   const [score, setScore] = useState<string>("");
-  const [otherTeamScore, setOtherTeamScore] = useState<string>("");
+
+  const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+    toast.success(text);
+  const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+    toast.error(text);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -60,12 +65,12 @@ const LolCard: React.FC = () => {
     fetchUserData();
   }, []);
 
-  const submitLolStats = async () => {
-    if (!userId || !champion) return;
+  const submitMkStats = async () => {
+    if (!userId || !map) return;
 
     try {
       const response = await fetch(
-        "http://esport/src/php/Member/GamesForms/insert_lol_stats.php",
+        "http://esport/src/php/Member/GamesForms/insert_valorant_stats.php",
         {
           method: "POST",
           headers: {
@@ -73,52 +78,47 @@ const LolCard: React.FC = () => {
           },
           body: JSON.stringify({
             user_id: userId,
-            agent_name: champion.name,
-            agent_class: champion.role,
-            kda: kda,
+            map_name: map.name,
             score: score,
-            otherTeamScore: otherTeamScore,
           }),
         }
       );
 
       const data = await response.json();
       if (data.success) {
-        console.log("Données enregistrées avec succès.");
+        setTimeout(() => window.location.reload(), 2000);
+        notify_ok("Données enregistrées avec succès.");
       } else {
-        console.error("Erreur : ", data.message);
+        setTimeout(() => window.location.reload(), 2000);
+        notify_err("Erreur lors de l'enregistrement des données.");
       }
     } catch (error) {
-      console.error("Erreur lors de l'envoi des données:", error);
+      setTimeout(() => window.location.reload(), 2000);
+      notify_err("Erreur: le service est indisponible.");
     }
   };
 
   return (
-    <div className="LolCard">
-      <AreaChartStepLol />
+    <div className="mkCard">
+      <AreaChartStepMarioKart />
       <form
         className="ValoInputs flex flex-wrap justify-between w-[90%]"
         onSubmit={(e) => {
           e.preventDefault();
-          submitLolStats();
+          submitMkStats();
         }}
       >
         <div className="flex flex-col gap-3">
-          <LolChampions onChampionChange={setChampion} />
-          <LolKDA value={kda} onChange={setKda} />
+          <MkMaps onMapChange={setMap} />
         </div>
         <div className="flex flex-col gap-3">
-          <LolScore value={score} onChange={setScore} />
-          <LolScoreOtherTeam
-            value={otherTeamScore}
-            onChange={setOtherTeamScore}
-          />
+          <MkScore value={score} onChange={setScore} />
         </div>
-
         <Button className="SubmitBtn">Sauvegarder</Button>
       </form>
+      <Toaster position="bottom-right" />
     </div>
   );
 };
 
-export default LolCard;
+export default MkCard;

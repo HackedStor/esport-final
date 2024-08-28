@@ -262,7 +262,7 @@ const ValoCard: React.FC = () => {
             onChange={setOtherTeamScore}
           />
         </div>
-        <Button>Sauvegarder</Button>
+        <Button className="SubmitBtn">Sauvegarder</Button>
       </form>
       <Toaster position="bottom-right" />
     </div>

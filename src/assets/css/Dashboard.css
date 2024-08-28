@@ -145,10 +145,12 @@
 .TableInput {
   border-radius: 5px;
   border: none;
+  background-color: #0d0d0d;
 }
 .TableBtn {
   border-radius: 5px;
   border: none;
+  background-color: #0d0d0d;
 }
 .TableModal {
   border-radius: 5px;
@@ -212,4 +214,13 @@ input[type="file"]::-webkit-file-upload-button {
   justify-content: center;
   margin: 20px;
   gap: 2vw;
+}
+
+.SubmitBtn {
+  border-radius: 5px;
+}
+.GameInput {
+  border-radius: 5px;
+  border: none;
+  background-color: #0d0d0d;
 }

@@ -1,36 +1,47 @@
 "use client";
 
-import { Activity } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "../../ui/chart";
-const chartData = [
-  { Weeks: "Semaine 1", Lol: 20 },
-  { Weeks: "Semaine 2", Lol: 10 },
-  { Weeks: "Semaine 3", Lol: 20 },
-  { Weeks: "Semaine 4", Lol: 10 },
-  { Weeks: "Semaine 5", Lol: 20 },
-];
 
 const chartConfig = {
-  Lol: {
-    label: "Lol",
-    color: "hsl(var(--chart-1))",
-    icon: Activity,
+  kda: {
+    label: "kda",
+    color: "#005A82",
+  },
+  winrate: {
+    label: "winrate",
+    color: "#C89B3C",
   },
 } satisfies ChartConfig;
 
 export function AreaChartStepLol() {
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    // Appel à l'API PHP pour récupérer les données
+    fetch("http://esport/src/php/getStats/getValoStats.php")
+      .then((response) => response.json())
+      .then((data) => setChartData(data))
+      .catch((error) => console.error("Erreur lors du fetch des données:", error));
+  }, []);
+
   return (
     <Card className="border-none rounded-[1vh]">
       <CardHeader>
-        <CardTitle>Perfomances sur Lol</CardTitle>
+        <CardTitle>Performances sur Lol</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="w-[40vw]">
@@ -38,32 +49,43 @@ export function AreaChartStepLol() {
             accessibilityLayer
             data={chartData}
             margin={{
-              left: 12,
-              right: 12,
+              left: 5,
+              right: 5,
             }}
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="Weeks"
-              tickLine={false}
+              dataKey="game"
+              tickLine={true}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 10)}
+              tickFormatter={(value) => `Game ${value}`}
             />
             <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              cursor={true}
+              content={<ChartTooltipContent indicator="dot" />}
             />
             <Area
-              dataKey="Lol"
-              type="step"
-              fill="var(--color-Lol)"
+              dataKey="kda"
+              type="natural"
+              fill="var(--color-kda)"
               fillOpacity={0.4}
-              stroke="var(--color-Lol)"
+              stroke="var(--color-kda)"
+              stackId="a"
+            />
+            <Area
+              dataKey="winrate"
+              type="natural"
+              fill="var(--color-winrate)"
+              fillOpacity={0.4}
+              stroke="var(--color-winrate)"
+              stackId="a"
             />
           </AreaChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter>
+      </CardFooter>
     </Card>
   );
 }
