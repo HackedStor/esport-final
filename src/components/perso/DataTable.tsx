@@ -40,6 +40,12 @@ import {
   TableRow,
 } from "../ui/table";
 import "../../assets/css/Dashboard.css";
+import toast, {
+  Renderable,
+  Toast,
+  Toaster,
+  ValueFunction,
+} from "react-hot-toast";
 
 export type Player = {
   id: number;
@@ -48,6 +54,42 @@ export type Player = {
   classe: string;
   date: string;
 };
+
+const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+  toast.success(text);
+const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) =>
+  toast.error(text);
+
+const handleBlackLisUser = async (userId :number) => {
+
+  try {
+    const response = await fetch(
+      "http://esport/src/php/Member/BlackListUser.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({userId}),
+      }
+    );
+
+    const data = await response.json();
+    if (data.success) {
+      // setTimeout(() => window.location.reload(), 2000);
+      notify_ok("Données enregistrées avec succès.");
+      notify_ok(data.userId);
+    } else {
+      // setTimeout(() => window.location.reload(), 2000);
+      notify_err("Erreur lors de l'enregistrement des données.");
+    }
+  } catch (error) {
+    // setTimeout(() => window.location.reload(), 2000);
+    notify_err("Erreur: le service est indisponible.");
+  }
+};
+
+
 
 export const columns: ColumnDef<Player>[] = [
   {
@@ -78,6 +120,7 @@ export const columns: ColumnDef<Player>[] = [
     id: "actions",
     cell: ({ row }) => {
       const player = row.original;
+      const playerID = player.id;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -104,10 +147,9 @@ export const columns: ColumnDef<Player>[] = [
               <FaUserMinus className="mr-2 h-4 w-4" /> Absent
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+            
             <DropdownMenuItem
-              onClick={() =>
-                alert("Utilisateur sur liste noire")
-              }
+              onClick={() => handleBlackLisUser(playerID)}
             >
               <BiSolidFlagAlt  className="mr-2 h-4 w-4" /> Inscrire l'utilisateur sur la liste noire
             </DropdownMenuItem>
@@ -263,6 +305,7 @@ export function DataTableDemo() {
           </Button>
         </div>
       </div>
+      <Toaster position="bottom-right" />
     </div>
   );
 }

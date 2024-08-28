@@ -46,7 +46,7 @@ function Home() {
   }, []);
 
   const handleCTAClick = () => {
-    window.location.href = "reservation";
+    window.location.href = "auth";
   };
 
   return (

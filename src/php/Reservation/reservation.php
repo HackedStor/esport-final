@@ -10,6 +10,7 @@ $msg = '';
 $maxParticipants = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userID = $_POST['userId'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $classe = $_POST['classe'];
@@ -70,12 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $msg = "Vous êtes déjà inscrit pour cette semaine.";
                     $success = false;
                 } else {
-                    $verif3 = "INSERT INTO $table (nom, prenom, classe, date) VALUES (:nom, :prenom, :classe, :date)";
+                    $verif3 = "INSERT INTO $table (user_id, nom, prenom, classe, date) VALUES (:user_id, :nom, :prenom, :classe, :date)";
                     $stmt = $conn->prepare($verif3);
                     $stmt->bindParam(':nom', $nom);
                     $stmt->bindParam(':prenom', $prenom);
                     $stmt->bindParam(':classe', $classe);
                     $stmt->bindParam(':date', $date);
+                    $stmt->bindParam(':user_id', $userID);
                     if ($stmt->execute()) {
                         $msg = "Inscription réussie.";
                         $success = true;
