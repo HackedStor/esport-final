@@ -237,7 +237,7 @@ const ValoCard: React.FC = () => {
       }
     } catch (error) {
       setTimeout(() => window.location.reload(), 2000);
-      notify_err("Erreur le service est indisponible.");
+      notify_err("Erreur: le service est indisponible.");
     }
   };
 

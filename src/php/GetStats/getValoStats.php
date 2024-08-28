@@ -29,11 +29,11 @@ try {
         list($kills, $assists, $deaths) = explode('/', $row['kda']);
 
         // Calcul du KDA
-        $kda = ($kills + $assists) / $deaths;
+        $kda = ($kills * 2 + $assists) / $deaths;
         // $kda = $row['kda'];
 
         // Calcul du winrate
-        $winrate = $row['score'] > $row['other_team_score'] ? 200 : 0;
+        $winrate = $row['score'] > $row['other_team_score'] ? 10 : 0;
 
         // Ajout des données formatées à chartData
         $chartData[] = [
