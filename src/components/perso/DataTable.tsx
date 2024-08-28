@@ -19,7 +19,6 @@ import {
 } from "@tanstack/react-table";
 
 import { Button } from "../ui/button";
-// import { Checkbox } from "../ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -29,7 +28,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { CheckIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { FaUserCheck, FaUserMinus  } from "react-icons/fa";
 import { BiSolidFlagAlt } from "react-icons/bi";
 import { Input } from "../ui/input";
@@ -93,22 +91,24 @@ export const columns: ColumnDef<Player>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() =>
-                navigator.clipboard.writeText(player.id.toString())
+                alert("Présent")
               }
             >
-              {/* <CheckIcon className="mr-2 h-4 w-4" /> Présent */}
               <FaUserCheck className="mr-2 h-4 w-4" /> Présent
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
-                navigator.clipboard.writeText(player.nom.toString())
+                alert("Absent")
               }
             >
-              {/* <Cross2Icon className="mr-2 h-4 w-4" /> Absent */}
               <FaUserMinus className="mr-2 h-4 w-4" /> Absent
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                alert("Utilisateur sur liste noire")
+              }
+            >
               <BiSolidFlagAlt  className="mr-2 h-4 w-4" /> Inscrire l'utilisateur sur la liste noire
             </DropdownMenuItem>
           </DropdownMenuContent>
