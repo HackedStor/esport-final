@@ -98,7 +98,7 @@ export const columns: ColumnDef<Player>[] = [
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
-                alert("Absent")
+                console.log("Absent", player.id)
               }
             >
               <FaUserMinus className="mr-2 h-4 w-4" /> Absent
