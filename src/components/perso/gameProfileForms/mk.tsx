@@ -70,7 +70,7 @@ const MkCard: React.FC = () => {
 
     try {
       const response = await fetch(
-        "http://esport/src/php/Member/GamesForms/insert_valorant_stats.php",
+        "http://esport/src/php/Member/GamesForms/insert_mk_stats.php",
         {
           method: "POST",
           headers: {

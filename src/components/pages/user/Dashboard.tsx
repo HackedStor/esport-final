@@ -140,7 +140,9 @@ const Dashboard: React.FC = () => {
                     Changez votre profil Mario Kart
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2"><MkCard /></CardContent>
+                <CardContent className="space-y-2">
+                  <MkCard />
+                </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="smash">
