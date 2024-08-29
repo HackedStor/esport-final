@@ -90,7 +90,63 @@ const handleBlackLisUser = async (userId :number) => {
   }
 };
 
+const handleABS = async (userId :number) => {
+  alert("Attention cette action est irreversible voulez vous vraiment inscrire l'utilisateur sur la liste noir ? Si c'est le cas alors merci de lui envoyer un mail pour le prévenir")
+  try {
+    const response = await fetch(
+      "http://esport/src/php/call/abs_player.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({userId}),
+      }
+    );
 
+    const data = await response.json();
+    if (data.success) {
+      setTimeout(() => window.location.reload(), 2000);
+      notify_ok(data.message);
+      // notify_ok(data.userId);
+    } else {
+      setTimeout(() => window.location.reload(), 2000);
+      notify_err(data.message);
+    }
+  } catch (error) {
+    setTimeout(() => window.location.reload(), 2000);
+    notify_err("Nous somes désolé, le service est indisponible.");
+  }
+};
+
+const handlePresent = async (userId :number) => {
+  alert("Attention cette action est irreversible voulez vous vraiment inscrire l'utilisateur sur la liste noir ? Si c'est le cas alors merci de lui envoyer un mail pour le prévenir")
+  try {
+    const response = await fetch(
+      "http://esport/src/php/call/present_player.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({userId}),
+      }
+    );
+
+    const data = await response.json();
+    if (data.success) {
+      setTimeout(() => window.location.reload(), 2000);
+      notify_ok(data.message);
+      // notify_ok(data.userId);
+    } else {
+      setTimeout(() => window.location.reload(), 2000);
+      notify_err(data.message);
+    }
+  } catch (error) {
+    setTimeout(() => window.location.reload(), 2000);
+    notify_err("Nous somes désolé, le service est indisponible.");
+  }
+};
 
 export const columns: ColumnDef<Player>[] = [
   {
@@ -134,16 +190,12 @@ export const columns: ColumnDef<Player>[] = [
             <DropdownMenuLabel>Actions possible</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() =>
-                alert("Présent")
-              }
+              onClick={() => handlePresent(playerID)}
             >
               <FaUserCheck className="mr-2 h-4 w-4" /> Présent
             </DropdownMenuItem>
             <DropdownMenuItem
-              onClick={() =>
-                console.log("Absent", player.id)
-              }
+              onClick={() => handleABS(playerID) }
             >
               <FaUserMinus className="mr-2 h-4 w-4" /> Absent
             </DropdownMenuItem>
