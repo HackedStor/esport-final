@@ -1,9 +1,10 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-import { MkMaps } from "./input_elements/mk_maps";
-import { MkScore } from "./input_elements/mk_score";
+import { RlScore } from "./input_elements/rl_score";
+import { RlScoreOtherTeam } from "./input_elements/rl_score_other_team";
 import "../../../assets/css/reservation.css";
-import { MkTable } from "./input_elements/mkTable";
+import { AreaChartStepFC24 } from "../UserCharts/AreaChartStepFC24";
 import { Button } from "../../ui/button";
 import toast, {
   Renderable,
@@ -12,12 +13,10 @@ import toast, {
   ValueFunction,
 } from "react-hot-toast";
 
-const MkCard: React.FC = () => {
+const FcCard: React.FC = () => {
   const [userId, setUserId] = React.useState<string>("");
-  const [map, setMap] = useState<{ name: string } | null>(
-    null
-  );
   const [score, setScore] = useState<string>("");
+  const [scoreOtherTeam, setScoreOtherTeam] = useState<string>("");
 
   const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
     toast.success(text);
@@ -65,8 +64,8 @@ const MkCard: React.FC = () => {
     fetchUserData();
   }, []);
 
-  const submitMkStats = async () => {
-    if (!userId || !map) return;
+  const submitFcStats = async () => {
+    if (!userId) return;
 
     try {
       const response = await fetch(
@@ -78,7 +77,6 @@ const MkCard: React.FC = () => {
           },
           body: JSON.stringify({
             user_id: userId,
-            map_name: map.name,
             score: score,
           }),
         }
@@ -99,20 +97,20 @@ const MkCard: React.FC = () => {
   };
 
   return (
-    <div className="mkCard">
-      <MkTable />
+    <div className="FcCard">
+      <AreaChartStepFC24 />
       <form
-        className="ValoInputs flex flex-wrap justify-between w-[90%]"
+        className="ValoInput flex flex-wrap justify-between w-[90%]"
         onSubmit={(e) => {
           e.preventDefault();
-          submitMkStats();
+          submitFcStats();
         }}
       >
         <div className="flex flex-col gap-3">
-          <MkMaps onMapChange={setMap} />
         </div>
-        <div className="flex flex-col gap-3">
-          <MkScore value={score} onChange={setScore} />
+        <div className="flex flex-row gap-3">
+          <RlScore value={score} onChange={setScore}/>
+          <RlScoreOtherTeam value={scoreOtherTeam} onChange={setScoreOtherTeam}/>
         </div>
         <Button className="SubmitBtn">Sauvegarder</Button>
       </form>
@@ -121,4 +119,4 @@ const MkCard: React.FC = () => {
   );
 };
 
-export default MkCard;
+export default FcCard;

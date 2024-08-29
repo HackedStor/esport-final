@@ -47,7 +47,7 @@ body {
   align-items: center;
   gap: 6vh;
   padding: 15px;
-  margin-top: 70px;
+  margin: 70px;
   border: 1px solid #3f3c3c;
   border-radius: 8px;
 }
@@ -172,7 +172,7 @@ textarea:focus ~ .input-border {
     align-items: center;
     gap: 6vh;
     padding: 15px;
-    margin-top: 30px;
+    margin: 30px;
     border: 1px solid #3f3c3c;
     border-radius: 8px;
   }

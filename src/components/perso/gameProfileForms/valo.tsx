@@ -109,7 +109,7 @@ const ValoCard: React.FC = () => {
     <div className="valoCard">
       <AreaChartStepValo />
       <form
-        className="ValoInputs flex flex-wrap justify-between w-[90%]"
+        className="ValoInput flex flex-wrap justify-between w-[90%]"
         onSubmit={(e) => {
           e.preventDefault();
           submitValorantStats();

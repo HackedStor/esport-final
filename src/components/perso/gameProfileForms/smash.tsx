@@ -1,9 +1,8 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-import { MkMaps } from "./input_elements/mk_maps";
-import { MkScore } from "./input_elements/mk_score";
+import { SmashScore } from "./input_elements/smash_score";
 import "../../../assets/css/reservation.css";
-import { MkTable } from "./input_elements/mkTable";
 import { Button } from "../../ui/button";
 import toast, {
   Renderable,
@@ -11,12 +10,10 @@ import toast, {
   Toaster,
   ValueFunction,
 } from "react-hot-toast";
+import { AreaChartStepSupSmashBros } from "../UserCharts/AreaChartStepSupSmashBros";
 
-const MkCard: React.FC = () => {
+const SmashCard: React.FC = () => {
   const [userId, setUserId] = React.useState<string>("");
-  const [map, setMap] = useState<{ name: string } | null>(
-    null
-  );
   const [score, setScore] = useState<string>("");
 
   const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
@@ -65,8 +62,8 @@ const MkCard: React.FC = () => {
     fetchUserData();
   }, []);
 
-  const submitMkStats = async () => {
-    if (!userId || !map) return;
+  const submitFcStats = async () => {
+    if (!userId) return;
 
     try {
       const response = await fetch(
@@ -78,7 +75,6 @@ const MkCard: React.FC = () => {
           },
           body: JSON.stringify({
             user_id: userId,
-            map_name: map.name,
             score: score,
           }),
         }
@@ -99,20 +95,19 @@ const MkCard: React.FC = () => {
   };
 
   return (
-    <div className="mkCard">
-      <MkTable />
+    <div className="SmashCard">
+      <AreaChartStepSupSmashBros />
       <form
-        className="ValoInputs flex flex-wrap justify-between w-[90%]"
+        className="ValoInput flex flex-wrap justify-between w-[90%]"
         onSubmit={(e) => {
           e.preventDefault();
-          submitMkStats();
+          submitFcStats();
         }}
       >
         <div className="flex flex-col gap-3">
-          <MkMaps onMapChange={setMap} />
         </div>
-        <div className="flex flex-col gap-3">
-          <MkScore value={score} onChange={setScore} />
+        <div className="flex flex-row gap-3">
+          <SmashScore value={score} onChange={setScore}/>
         </div>
         <Button className="SubmitBtn">Sauvegarder</Button>
       </form>
@@ -121,4 +116,4 @@ const MkCard: React.FC = () => {
   );
 };
 
-export default MkCard;
+export default SmashCard;

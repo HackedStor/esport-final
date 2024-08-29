@@ -15,10 +15,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import ValoCard from "../../perso/gameProfileForms/valo";
 import LolCard from "../../perso/gameProfileForms/lol";
 import MkCard from "../../perso/gameProfileForms/mk";
+import FcCard from "../../perso/gameProfileForms/fc";
 
 
 import "../../../assets/css/Dashboard.css";
 import "../../../assets/css/reservation.css";
+import SmashCard from "../../perso/gameProfileForms/smash";
 
 const Dashboard: React.FC = () => {
   const [pseudo, setPseudo] = useState<string>("");
@@ -153,7 +155,8 @@ const Dashboard: React.FC = () => {
                     Changez votre profil Super Smash Bros
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardContent className="space-y-2"><SmashCard /></CardContent>
+
               </Card>
             </TabsContent>
             <TabsContent value="fc">
@@ -162,7 +165,9 @@ const Dashboard: React.FC = () => {
                   <CardTitle>FC24</CardTitle>
                   <CardDescription>Changez votre profil FC24</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">trucs a mettre</CardContent>
+                <CardContent className="space-y-2">
+                  <FcCard />
+                </CardContent>
               </Card>
             </TabsContent>
           </Tabs>
