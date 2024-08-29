@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 
 import { Activity } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
@@ -10,23 +11,25 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../ui/chart";
-const chartData = [
-  { Weeks: "Semaine 1", SupSmashBros: 10 },
-  { Weeks: "Semaine 2", SupSmashBros: 20 },
-  { Weeks: "Semaine 3", SupSmashBros: 20 },
-  { Weeks: "Semaine 4", SupSmashBros: 10 },
-  { Weeks: "Semaine 5", SupSmashBros: 10 },
-];
 
 const chartConfig = {
-  SupSmashBros: {
-    label: "SupSmashBros",
-    color: "hsl(var(--chart-1))",
+  score: {
+    label: "score",
+    color: "hsl(var(--chart-2))",
     icon: Activity,
   },
 } satisfies ChartConfig;
 
 export function AreaChartStepSupSmashBros() {
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    // Appel à l'API PHP pour récupérer les données
+    fetch("http://esport/src/php/getStats/getSmashStats.php")
+      .then((response) => response.json())
+      .then((data) => setChartData(data))
+      .catch((error) => console.error("Erreur lors du fetch des données:", error));
+  }, []);
   return (
     <Card className="border-none rounded-[1vh]">
       <CardHeader>
@@ -55,11 +58,11 @@ export function AreaChartStepSupSmashBros() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Area
-              dataKey="SupSmashBros"
+              dataKey="score"
               type="step"
-              fill="var(--color-SupSmashBros)"
+              fill="var(--color-score)"
               fillOpacity={0.4}
-              stroke="var(--color-SupSmashBros)"
+              stroke="var(--color-score)"
             />
           </AreaChart>
         </ChartContainer>

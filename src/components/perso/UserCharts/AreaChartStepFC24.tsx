@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 
 import { Activity } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
@@ -10,23 +11,32 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../ui/chart";
-const chartData = [
-  { Weeks: "Semaine 1", FC24: 20 },
-  { Weeks: "Semaine 2", FC24: 10 },
-  { Weeks: "Semaine 3", FC24: 10 },
-  { Weeks: "Semaine 4", FC24: 20 },
-  { Weeks: "Semaine 5", FC24: 20 },
-];
+// const chartData = [
+//   { Weeks: "Semaine 1", FC24: 20 },
+//   { Weeks: "Semaine 2", FC24: 10 },
+//   { Weeks: "Semaine 3", FC24: 10 },
+//   { Weeks: "Semaine 4", FC24: 20 },
+//   { Weeks: "Semaine 5", FC24: 20 },
+// ];
 
 const chartConfig = {
-  FC24: {
-    label: "FC24",
+  winrate: {
+    label: "winrate",
     color: "hsl(var(--chart-1))",
     icon: Activity,
   },
 } satisfies ChartConfig;
 
 export function AreaChartStepFC24() {
+  const [chartData, setChartData] = useState([]);
+  useEffect(() => {
+    // Appel à l'API PHP pour récupérer les données
+    fetch("http://esport/src/php/getStats/getfc24Stats.php")
+      .then((response) => response.json())
+      .then((data) => setChartData(data))
+      .catch((error) => console.error("Erreur lors du fetch des données:", error));
+  }, []);
+
   return (
     <Card className="border-none rounded-[1vh]">
       <CardHeader>
@@ -55,11 +65,11 @@ export function AreaChartStepFC24() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Area
-              dataKey="FC24"
+              dataKey="winrate"
               type="step"
-              fill="var(--color-FC24)"
+              fill="var(--color-winrate)"
               fillOpacity={0.4}
-              stroke="var(--color-FC24)"
+              stroke="var(--color-winrate)"
             />
           </AreaChart>
         </ChartContainer>

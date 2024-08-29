@@ -155,8 +155,9 @@ const Dashboard: React.FC = () => {
                     Changez votre profil Super Smash Bros
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2"><SmashCard /></CardContent>
-
+                <CardContent className="space-y-2">
+                  <SmashCard />
+                </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="fc">

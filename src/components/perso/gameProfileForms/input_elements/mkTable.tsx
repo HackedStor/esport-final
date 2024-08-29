@@ -45,9 +45,9 @@ export type Player = {
 
 export const columns: ColumnDef<Player>[] = [
   {
-    accessorKey: "map",
+    accessorKey: "map_name",
     header: "Circuit",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("map")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("map_name")}</div>,
   },
   {
     accessorKey: "trynb",
@@ -57,14 +57,14 @@ export const columns: ColumnDef<Player>[] = [
     ),
   },
   {
-    accessorKey: "time",
+    accessorKey: "score",
     header: "Temps",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("time")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("score")}</div>,
   },
   {
-    accessorKey: "date",
+    accessorKey: "date_created",
     header: "Date de la course",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("date")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("date_created")}</div>,
   },
 ];
 
@@ -100,7 +100,7 @@ export function MkTable() {
   React.useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        "http://esport/src/php/Member/getPlayerNextSession.php"
+        "http://esport/src/php/GetStats/getMkStats.php"
       );
       const result = await response.json();
       setData(result);

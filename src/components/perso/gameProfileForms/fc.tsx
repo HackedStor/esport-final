@@ -69,7 +69,7 @@ const FcCard: React.FC = () => {
 
     try {
       const response = await fetch(
-        "http://esport/src/php/Member/GamesForms/insert_mk_stats.php",
+        "http://esport/src/php/Member/GamesForms/insert_fc24_stats.php",
         {
           method: "POST",
           headers: {
@@ -78,6 +78,7 @@ const FcCard: React.FC = () => {
           body: JSON.stringify({
             user_id: userId,
             score: score,
+            scoreOtherTeam: scoreOtherTeam,
           }),
         }
       );
