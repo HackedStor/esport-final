@@ -198,6 +198,7 @@ input[type="file"]::-webkit-file-upload-button {
   display: flex;
   flex-direction: column;
   width: 90vh;
+  margin: 100px;
 }
 .tablist {
   height: auto;
