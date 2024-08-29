@@ -49,13 +49,13 @@ export const columns: ColumnDef<Player>[] = [
     header: "Circuit",
     cell: ({ row }) => <div className="capitalize">{row.getValue("map_name")}</div>,
   },
-  {
-    accessorKey: "trynb",
-    header: "Nombre d'essais",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("trynb")}</div>
-    ),
-  },
+  // {
+  //   accessorKey: "trynb",
+  //   header: "Nombre d'essais",
+  //   cell: ({ row }) => (
+  //     <div className="capitalize">{row.getValue("trynb")}</div>
+  //   ),
+  // },
   {
     accessorKey: "score",
     header: "Temps",
