@@ -49,6 +49,7 @@ import toast, {
 
 export type Player = {
   id: number;
+  user_id: number;
   nom: string;
   prenom: string;
   classe: string;
@@ -61,7 +62,7 @@ const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) =>
   toast.error(text);
 
 const handleBlackLisUser = async (userId :number) => {
-
+  alert("Attention cette action est irreversible voulez vous vraiment inscrire l'utilisateur sur la liste noir ? Si c'est le cas alors merci de lui envoyer un mail pour le prévenir")
   try {
     const response = await fetch(
       "http://esport/src/php/Member/BlackListUser.php",
@@ -76,16 +77,16 @@ const handleBlackLisUser = async (userId :number) => {
 
     const data = await response.json();
     if (data.success) {
-      // setTimeout(() => window.location.reload(), 2000);
-      notify_ok("Données enregistrées avec succès.");
-      notify_ok(data.userId);
+      setTimeout(() => window.location.reload(), 2000);
+      notify_ok(data.message);
+      // notify_ok(data.userId);
     } else {
-      // setTimeout(() => window.location.reload(), 2000);
-      notify_err("Erreur lors de l'enregistrement des données.");
+      setTimeout(() => window.location.reload(), 2000);
+      notify_err(data.message);
     }
   } catch (error) {
-    // setTimeout(() => window.location.reload(), 2000);
-    notify_err("Erreur: le service est indisponible.");
+    setTimeout(() => window.location.reload(), 2000);
+    notify_err("Nous somes désolé, le service est indisponible.");
   }
 };
 
@@ -120,7 +121,7 @@ export const columns: ColumnDef<Player>[] = [
     id: "actions",
     cell: ({ row }) => {
       const player = row.original;
-      const playerID = player.id;
+      const playerID = player.user_id;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -196,6 +197,7 @@ export function DataTableDemo() {
       );
       const result = await response.json();
       setData(result);
+      console.log("Données récupérées :", result);
     }
     fetchData();
   }, []);

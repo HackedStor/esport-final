@@ -1,7 +1,7 @@
 <?php
-// session_start();
-// require('../config/config.php');
-require '../../../vendor/autoload.php';
+session_start();
+require('../config/config.php');
+require '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 // Création de l'objet PHPMailer
 $mail = new PHPMailer(true); // true active les exceptions
 
-$table = $_SESSION['table'];
+// $table = $_SESSION['table'];
 
 $incremental_id_crn1 = 1;
 // Requête sur la table crn1
@@ -20,11 +20,11 @@ $stmt_crn1->execute();
 $count_crn1 = $stmt_crn1->rowCount();
 
 // Envoyer la liste des inscrits
-// $verif5 = "SELECT * FROM $table WHERE date=:date";
-// $stmt = $conn->prepare($verif5);
-// $stmt->bindParam(':date', $date);
-// $stmt->execute();
-// $participants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$verif5 = "SELECT * FROM crn2 WHERE date=:date";
+$stmt = $conn->prepare($verif5);
+$stmt->bindParam(':date', $date);
+$stmt->execute();
+$participants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Paramètres du serveur SMTP
 $mail->isSMTP();
