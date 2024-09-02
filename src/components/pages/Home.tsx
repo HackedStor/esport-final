@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../../assets/css/Home.css";
 import ButtonCus from "../perso/Button";
 import Card from "../perso/Card";
+import useDevToolsProtection from "../../Hooks/devToolsBlocker";
 
 interface NewsItem {
   image: string;
@@ -12,6 +13,7 @@ interface NewsItem {
 }
 
 function Home() {
+  useDevToolsProtection();
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

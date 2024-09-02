@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import TitleInscription from "../../perso/TitleInscription";
 import FormReservation from "../../perso/FormReservation";
 import { slide as Menu } from "react-burger-menu";
+import useDevToolsProtection from "../../../Hooks/devToolsBlocker";
 
 import {
   Card,
@@ -23,6 +24,7 @@ import "../../../assets/css/reservation.css";
 import SmashCard from "../../perso/gameProfileForms/smash";
 
 const Dashboard: React.FC = () => {
+  useDevToolsProtection();
   const [pseudo, setPseudo] = useState<string>("");
 
   useEffect(() => {

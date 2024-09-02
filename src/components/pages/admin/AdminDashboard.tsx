@@ -3,8 +3,10 @@ import "../../../assets/css/Dashboard.css";
 import { DataTableDemo } from "../../perso/DataTable";
 import { slide as Menu } from "react-burger-menu";
 import { TableDemo } from "../../perso/NewsTable";
+import useDevToolsProtection from "../../../Hooks/devToolsBlocker";
 
 const AdminDashboard: React.FC = () => {
+  useDevToolsProtection();
   const [pseudo, setPseudo] = useState<string>("");
 
   useEffect(() => {
