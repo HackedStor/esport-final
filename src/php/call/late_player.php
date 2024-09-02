@@ -9,7 +9,7 @@ include('../config/config.php');
 $data = json_decode(file_get_contents('php://input'), true);
 $userId = $data['userId'];
 
-$status = 'Absent'; // Modifier ce paramètre selon le fichier : 'Présent', 'Absent', 'Retard'
+$status = 'Late'; // Modifier ce paramètre selon le fichier : 'Présent', 'Absent', 'Retard'
 
 // Mets à jour le statut du joueur
 $query = "UPDATE users SET status = :status WHERE id = :id";

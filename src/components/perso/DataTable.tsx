@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import * as React from "react";
 import {
-  // CaretSortIcon,
   ChevronDownIcon,
   DotsHorizontalIcon,
 } from "@radix-ui/react-icons";
@@ -28,7 +27,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { FaUserCheck, FaUserMinus  } from "react-icons/fa";
+import { FaUserCheck, FaUserMinus, FaUserClock } from "react-icons/fa";
 import { BiSolidFlagAlt } from "react-icons/bi";
 import { Input } from "../ui/input";
 import {
@@ -40,13 +39,9 @@ import {
   TableRow,
 } from "../ui/table";
 import "../../assets/css/Dashboard.css";
-import toast, {
-  Renderable,
-  Toast,
-  Toaster,
-  ValueFunction,
-} from "react-hot-toast";
+import toast, { Renderable, Toast, Toaster, ValueFunction } from "react-hot-toast";
 
+// Types
 export type Player = {
   id: number;
   user_id: number;
@@ -56,10 +51,9 @@ export type Player = {
   date: string;
 };
 
-const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) =>
-  toast.success(text);
-const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) =>
-  toast.error(text);
+// Notifications
+const notify_ok = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.success(text);
+const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) => toast.error(text);
 
 const handleBlackLisUser = async (userId :number) => {
   alert("Attention cette action est irreversible voulez vous vraiment inscrire l'utilisateur sur la liste noir ? Si c'est le cas alors merci de lui envoyer un mail pour le prévenir")
@@ -90,89 +84,59 @@ const handleBlackLisUser = async (userId :number) => {
   }
 };
 
-const handleABS = async (userId :number) => {
-  alert("Attention cette action est irreversible voulez vous vraiment inscrire l'utilisateur sur la liste noir ? Si c'est le cas alors merci de lui envoyer un mail pour le prévenir")
+// Fonction pour mettre à jour l'état d'un joueur
+const updatePlayerStatus = async (userId: number, status: string) => {
+  const endpointMap: Record<string, string> = {
+    present: "present_player.php",
+    absent: "abs_player.php",
+    late: "late_player.php",
+  };
+
   try {
-    const response = await fetch(
-      "http://esport/src/php/call/abs_player.php",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({userId}),
-      }
-    );
+    const response = await fetch(`http://esport/src/php/call/${endpointMap[status]}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId }),
+    });
 
     const data = await response.json();
     if (data.success) {
-      setTimeout(() => window.location.reload(), 2000);
       notify_ok(data.message);
-      // notify_ok(data.userId);
     } else {
-      setTimeout(() => window.location.reload(), 2000);
       notify_err(data.message);
     }
   } catch (error) {
-    setTimeout(() => window.location.reload(), 2000);
-    notify_err("Nous somes désolé, le service est indisponible.");
+    notify_err("Nous sommes désolé, le service est indisponible.");
   }
 };
 
-const handlePresent = async (userId :number) => {
-  alert("Attention cette action est irreversible voulez vous vraiment inscrire l'utilisateur sur la liste noir ? Si c'est le cas alors merci de lui envoyer un mail pour le prévenir")
+// Fonction pour générer le CSV
+const generateCSV = async () => {
   try {
-    const response = await fetch(
-      "http://esport/src/php/call/present_player.php",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({userId}),
-      }
-    );
-
-    const data = await response.json();
-    if (data.success) {
-      setTimeout(() => window.location.reload(), 2000);
-      notify_ok(data.message);
-      // notify_ok(data.userId);
-    } else {
-      setTimeout(() => window.location.reload(), 2000);
-      notify_err(data.message);
-    }
+    const response = await fetch("http://esport/src/php/call/generate_csv.php");
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "attendance.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+    notify_ok("CSV généré avec succès.");
   } catch (error) {
-    setTimeout(() => window.location.reload(), 2000);
-    notify_err("Nous somes désolé, le service est indisponible.");
+    notify_err("Erreur lors de la génération du fichier CSV.");
   }
 };
 
+// Colonnes du tableau
 export const columns: ColumnDef<Player>[] = [
-  {
-    accessorKey: "nom",
-    header: "Nom",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("nom")}</div>,
-  },
-  {
-    accessorKey: "prenom",
-    header: "Prénom",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("prenom")}</div>
-    ),
-  },
-  {
-    accessorKey: "classe",
-    header: "Classe",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("classe")}</div>
-    ),
-  },
-  {
-    accessorKey: "date",
-    header: "Date de la session",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("date")}</div>,
-  },
+  { accessorKey: "nom", header: "Nom", cell: ({ row }) => <div className="capitalize">{row.getValue("nom")}</div> },
+  { accessorKey: "prenom", header: "Prénom", cell: ({ row }) => <div className="capitalize">{row.getValue("prenom")}</div> },
+  { accessorKey: "classe", header: "Classe", cell: ({ row }) => <div className="capitalize">{row.getValue("classe")}</div> },
+  { accessorKey: "date", header: "Date de la session", cell: ({ row }) => <div className="capitalize">{row.getValue("date")}</div> },
   {
     id: "actions",
     cell: ({ row }) => {
@@ -189,22 +153,18 @@ export const columns: ColumnDef<Player>[] = [
           <DropdownMenuContent align="end" className="TableModal">
             <DropdownMenuLabel>Actions possible</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => handlePresent(playerID)}
-            >
+            <DropdownMenuItem onClick={() => updatePlayerStatus(playerID, "present")}>
               <FaUserCheck className="mr-2 h-4 w-4" /> Présent
             </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => handleABS(playerID) }
-            >
+            <DropdownMenuItem onClick={() => updatePlayerStatus(playerID, "absent")}>
               <FaUserMinus className="mr-2 h-4 w-4" /> Absent
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => updatePlayerStatus(playerID, "late")}>
+              <FaUserClock className="mr-2 h-4 w-4" /> Retard
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            
-            <DropdownMenuItem
-              onClick={() => handleBlackLisUser(playerID)}
-            >
-              <BiSolidFlagAlt  className="mr-2 h-4 w-4" /> Inscrire l'utilisateur sur la liste noire
+            <DropdownMenuItem onClick={() => handleBlackLisUser(playerID)}>
+              <BiSolidFlagAlt className="mr-2 h-4 w-4" /> Inscrire l'utilisateur sur la liste noire
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -213,13 +173,11 @@ export const columns: ColumnDef<Player>[] = [
   },
 ];
 
+// Composant principal
 export function DataTableDemo() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const [data, setData] = React.useState<Player[]>([]);
 
@@ -234,19 +192,12 @@ export function DataTableDemo() {
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
+    state: { sorting, columnFilters, columnVisibility, rowSelection },
   });
 
   React.useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        "http://esport/src/php/Member/getPlayerNextSession.php"
-      );
+      const response = await fetch("http://esport/src/php/Member/getPlayerNextSession.php");
       const result = await response.json();
       setData(result);
       console.log("Données récupérées :", result);
@@ -260,9 +211,7 @@ export function DataTableDemo() {
         <Input
           placeholder="Filtrer les noms..."
           value={(table.getColumn("nom")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("nom")?.setFilterValue(event.target.value)
-          }
+          onChange={(event) => table.getColumn("nom")?.setFilterValue(event.target.value)}
           className="max-w-sm TableInput"
         />
         <DropdownMenu>
@@ -272,19 +221,16 @@ export function DataTableDemo() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="TableModal">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => (
-                <DropdownMenuCheckboxItem
-                  key={column.id}
-                  className="capitalize"
-                  checked={column.getIsVisible()}
-                  onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                >
-                  {column.id}
-                </DropdownMenuCheckboxItem>
-              ))}
+            {table.getAllColumns().filter((column) => column.getCanHide()).map((column) => (
+              <DropdownMenuCheckboxItem
+                key={column.id}
+                className="capitalize"
+                checked={column.getIsVisible()}
+                onCheckedChange={(value) => column.toggleVisibility(!!value)}
+              >
+                {column.id}
+              </DropdownMenuCheckboxItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -295,12 +241,7 @@ export function DataTableDemo() {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
@@ -316,20 +257,14 @@ export function DataTableDemo() {
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   Aucun résultat.
                 </TableCell>
               </TableRow>
@@ -359,7 +294,13 @@ export function DataTableDemo() {
           </Button>
         </div>
       </div>
-      <Toaster position="bottom-right" />
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <Button variant="outline" onClick={generateCSV}>
+          Exporter CSV
+        </Button>
+      </div>
+
+      <Toaster />
     </div>
   );
 }

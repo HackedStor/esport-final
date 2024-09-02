@@ -7,7 +7,7 @@ require('../config/config.php');
 // Fonction de validation et de vérification de l'unicité
 function validateAndCheckUnique($conn, $email, $pseudo, $password) {
     // Assainissement et validation des entrées
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $email = trim($email);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return "Email invalide.";
     }
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(array('success' => 'Utilisateur enregistré avec succès.'));
     } else {
         // Affichage du message d'erreur
-        echo json_encode(array('error' => $result));
+        echo json_encode(array('error' => $result, 'Email reçu :' => $Email));
     }
 } else {
     echo json_encode(array('error' => 'Méthode de requête non valide.'));
