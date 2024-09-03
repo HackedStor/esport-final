@@ -27,7 +27,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { FaUserCheck, FaUserMinus, FaUserClock } from "react-icons/fa";
+import { FaUserCheck, FaUserMinus, FaUserClock, FaCheck, FaFileExport} from "react-icons/fa";
 import { BiSolidFlagAlt } from "react-icons/bi";
 import { Input } from "../ui/input";
 import {
@@ -103,11 +103,14 @@ const updatePlayerStatus = async (userId: number, status: string) => {
 
     const data = await response.json();
     if (data.success) {
+      setTimeout(() => window.location.reload(), 2000);
       notify_ok(data.message);
     } else {
+      setTimeout(() => window.location.reload(), 2000);
       notify_err(data.message);
     }
   } catch (error) {
+    setTimeout(() => window.location.reload(), 2000);
     notify_err("Nous sommes désolé, le service est indisponible.");
   }
 };
@@ -125,9 +128,27 @@ const generateCSV = async () => {
     a.click();
     a.remove();
     window.URL.revokeObjectURL(url);
+    setTimeout(() => window.location.reload(), 2000);
     notify_ok("CSV généré avec succès.");
   } catch (error) {
+    setTimeout(() => window.location.reload(), 2000);
     notify_err("Erreur lors de la génération du fichier CSV.");
+  }
+};
+
+const attendanceFinish = async () => {
+  try {
+    const response = await fetch("http://esport/src/php/call/attendanceFinish.php");
+    const data = await response.json();
+    if (data.success) {
+      setTimeout(() => window.location.reload(), 2000);
+      notify_ok(data.message);
+    } else {
+      setTimeout(() => window.location.reload(), 2000);
+      notify_err(data.message);
+    }
+  } catch (error) {
+    notify_err("Nous sommes désolé, le service est indisponible.");
   }
 };
 
@@ -296,7 +317,12 @@ export function DataTableDemo() {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button variant="outline" onClick={generateCSV}>
+          <FaFileExport className="mr-2 h-4 w-4 r" />
           Exporter CSV
+        </Button>
+        <Button variant="outline" onClick={attendanceFinish}>
+          <FaCheck className="mr-2 h-4 w-4" />
+          Appel effectué
         </Button>
       </div>
 

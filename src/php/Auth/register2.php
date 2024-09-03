@@ -34,6 +34,5 @@ foreach ($users as $user) {
     $stmt->bindParam(':date', $user['date']);
     $stmt->bindParam(':user_id', $user['userId']);
     $stmt->execute();
-    // echo "UPDATE users SET pwd = '$hashedPassword' WHERE email = '{$user['prenom']}' AND pseudo = '{$user['pseudo']}';\n";
 }
 ?>
