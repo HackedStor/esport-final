@@ -15,10 +15,10 @@ $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Création du fichier CSV
 $filename = "attendance.csv";
 $handle = fopen($filename, 'w+');
-fputcsv($handle, array('ID', 'Email', 'Pseudo', 'Statut'), ';');
+fputcsv($handle, array('ID', 'Classe', 'Pseudo', 'Statut'), ';');
 
 foreach ($players as $row) {
-    fputcsv($handle, array($row['id'], $row['email'], $row['pseudo'], $row['status']), ';');
+    fputcsv($handle, array($row['id'], $row['classe'], $row['pseudo'], $row['status']), ';');
 }
 
 fclose($handle);
