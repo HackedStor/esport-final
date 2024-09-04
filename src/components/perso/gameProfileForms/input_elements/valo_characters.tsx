@@ -73,7 +73,7 @@ export function ValoAgents({ onAgentChange }: ValoAgentsProps) {
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Trouvez un agent..." />
+          <CommandInput placeholder="Trouvez un agent..."/>
           <CommandList>
             <CommandEmpty>Aucun agent trouvé.</CommandEmpty>
             <CommandGroup>

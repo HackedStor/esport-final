@@ -157,3 +157,7 @@
     margin-left: 0px;
   }
 }
+
+.gameIcon {
+  max-width: 150px !important;
+}

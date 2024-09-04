@@ -3,6 +3,7 @@ import "../../assets/css/Home.css";
 import ButtonCus from "../perso/Button";
 import Card from "../perso/Card";
 import useDevToolsProtection from "../../Hooks/devToolsBlocker";
+import { GameList } from "../perso/gameList";
 
 interface NewsItem {
   image: string;
@@ -110,6 +111,8 @@ function Home() {
             garantir votre place et profiter de chaque session.
           </p>
         </header>
+        <h1>Tous les mercredi</h1>
+
       </section>
 
       <section className="games">
@@ -121,6 +124,7 @@ function Home() {
             commencez à vous entraîner dès aujourd'hui.
           </p>
         </header>
+        <GameList />
       </section>
 
       <section className="tournaments">
