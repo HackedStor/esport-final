@@ -4,11 +4,16 @@ import { DataTableDemo } from "../../perso/DataTable";
 import { slide as Menu } from "react-burger-menu";
 import { TableDemo } from "../../perso/NewsTable";
 import useDevToolsProtection from "../../../Hooks/devToolsBlocker";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard: React.FC = () => {
   useDevToolsProtection();
+  const navigate = useNavigate();
   const [pseudo, setPseudo] = useState<string>("");
-
+  useEffect(() => {
+    localStorage.removeItem("is_admin");
+  }, []);
+  setTimeout(() => {}, 100);
   useEffect(() => {
     const fetchUserData = async () => {
       const email = localStorage.getItem("email");
@@ -35,6 +40,12 @@ const AdminDashboard: React.FC = () => {
 
         if (data.success) {
           setPseudo(data.pseudo);
+          localStorage.setItem("is_admin", data.is_admin.toString());
+
+          if(data.is_admin === 0) {
+            navigate("/dashboard");
+            return;
+          }
         } else {
           throw new Error(data.message || "Erreur inconnue");
         }

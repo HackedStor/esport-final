@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const email = localStorage.getItem("email");
-
+  
       try {
         const response = await fetch(
           "http://esport/src/php/Member/getUserData.php",
@@ -53,7 +53,15 @@ const Dashboard: React.FC = () => {
         }
 
         if (data.success) {
+          // setTimeout(() => {
+          //   setPseudo(data.pseudo);
+          //   localStorage.setItem("is_admin", data.is_admin.toString());
+          // }, 1000);
           setPseudo(data.pseudo);
+          localStorage.removeItem("is_admin");
+          localStorage.setItem("is_admin", data.is_admin.toString());
+          console.log(data.is_admin);
+          
         } else {
           throw new Error(data.message || "Erreur inconnue");
         }
@@ -68,7 +76,9 @@ const Dashboard: React.FC = () => {
 
     fetchUserData();
   }, []);
-
+  useEffect(() => {
+    console.log("is_admin dans localStorage:", localStorage.getItem("is_admin"));
+  }, []);
   return (
     <div className="dashboard">
       <Menu width={280}>

@@ -22,6 +22,7 @@ const Logout: React.FC = () => {
 
         if (result.success) {
           localStorage.removeItem("email");
+          localStorage.removeItem("is_admin");
           navigate("/");
         } else {
           console.error("La déconnexion a échoué :", result.message);
