@@ -16,14 +16,14 @@ const useEnhancedDevToolsProtection = () => {
         body.style.opacity = '0.5';
         body.style.userSelect = 'none';
 
-        window.location.href = 'https://youtu.be/dQw4w9WgXcQ?si=BXC1nXRn3weB71Zj';
+        // window.location.href = 'https://youtu.be/dQw4w9WgXcQ?si=BXC1nXRn3weB71Zj';
 
         if (blockTimeoutRef.current) clearTimeout(blockTimeoutRef.current);
         blockTimeoutRef.current = setTimeout(() => {
             body.style.pointerEvents = 'auto';
             body.style.opacity = '1';
             body.style.userSelect = 'auto';
-        }, 10000);
+        }, 10);
     }, []);
 
     // Limiter le nombre de clés dans le localStorage

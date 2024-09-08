@@ -3,11 +3,9 @@ import "../../../assets/css/Dashboard.css";
 import { DataTableDemo } from "../../perso/DataTable";
 import { slide as Menu } from "react-burger-menu";
 import { TableDemo } from "../../perso/NewsTable";
-import useDevToolsProtection from "../../../Hooks/devToolsBlocker";
 import { useNavigate } from "react-router-dom";
 
 const AdminDashboard: React.FC = () => {
-  useDevToolsProtection();
   const navigate = useNavigate();
   const [pseudo, setPseudo] = useState<string>("");
   useEffect(() => {
