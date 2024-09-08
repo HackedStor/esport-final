@@ -18,10 +18,10 @@ import LolCard from "../../perso/gameProfileForms/lol";
 import MkCard from "../../perso/gameProfileForms/mk";
 import FcCard from "../../perso/gameProfileForms/fc";
 import TmCard from "../../perso/gameProfileForms/tm";
+import SmashCard from "../../perso/gameProfileForms/smash";
 
 import "../../../assets/css/Dashboard.css";
 import "../../../assets/css/reservation.css";
-import SmashCard from "../../perso/gameProfileForms/smash";
 
 const Dashboard: React.FC = () => {
   useDevToolsProtection();
