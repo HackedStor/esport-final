@@ -8,18 +8,20 @@ header("Content-Type: application/json");
 require_once '../config/config.php';
 
 
+
 // Connexion à la base de données via PDO
 try {
 
-    // Requête pour récupérer les utilisateurs de la date la plus proche dans les deux tables
     $sql = "
-        SELECT * FROM (
-            SELECT * FROM crn1
-            UNION ALL
-            SELECT * FROM crn2
-        ) AS combined
-        ORDER BY STR_TO_DATE(date, '%d-%m-%Y') DESC
+    SELECT * FROM (
+        SELECT 'CRN1' AS table_name, id, user_id, nom, prenom, classe, date FROM crn1
+
+        UNION ALL
+
+        SELECT 'CRN2' AS table_name, id, user_id, nom, prenom, classe, date FROM crn2
+    ) AS combined_results ORDER BY STR_TO_DATE(date, '%Y-%m-%d') ASC;
     ";
+
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -32,3 +34,4 @@ try {
     echo json_encode(["error" => "ERREUR : Impossible de se connecter. " . $e->getMessage()]);
 }
 ?>
+
