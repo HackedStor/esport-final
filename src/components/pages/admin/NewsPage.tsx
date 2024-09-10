@@ -20,7 +20,7 @@ const Actualites: React.FC = () => {
         </a>
       </Menu>
       <div className="container">
-        <div className="cus_container_res">
+        <div className="h-[80vh] cus_container_res">
           <h1>IMPORTANT: Il faut recentrer le form</h1>
           <AddNewsForm />
         </div>

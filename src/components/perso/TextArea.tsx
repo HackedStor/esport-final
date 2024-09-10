@@ -21,7 +21,7 @@ const TextArea: React.FC<TextAreaProps> = ({
     <div className="form">
       <label htmlFor={htmlFor}>{labelValue} :</label>
       <textarea
-        className="textarea"
+        className="h-[20vh] textarea"
         name={TextAreaName}
         id={TextAreaId}
         value={value}
