@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/login.css";
@@ -98,13 +99,22 @@ const FormAuth: React.FC = () => {
               type="text"
             />
           </div>
-          <Input
-            htmlFor="Password"
-            labelValue="Mot de passe"
-            InputName="Password"
-            InputId="Password"
-            type="password"
-          />
+          <div className="form_control">
+            <Input
+              htmlFor="Password"
+              labelValue="Mot de passe"
+              InputName="Password"
+              InputId="Password"
+              type="password"
+            />
+            <Input
+              htmlFor="Classe"
+              labelValue="Classe"
+              InputName="Classe"
+              InputId="Classe"
+              type="text"
+            />
+          </div>
           <Button type="submit" classValue="submit" text="S'inscrire" />
         </form>
       </div>

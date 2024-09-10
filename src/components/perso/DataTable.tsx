@@ -49,6 +49,7 @@ export type Player = {
   prenom: string;
   classe: string;
   date: string;
+  table_name: string;
 };
 
 // Notifications
@@ -103,14 +104,14 @@ const updatePlayerStatus = async (userId: number, status: string) => {
 
     const data = await response.json();
     if (data.success) {
-      setTimeout(() => window.location.reload(), 2000);
+      // setTimeout(() => window.location.reload(), 2000);
       notify_ok(data.message);
     } else {
-      setTimeout(() => window.location.reload(), 2000);
+      // setTimeout(() => window.location.reload(), 2000);
       notify_err(data.message);
     }
   } catch (error) {
-    setTimeout(() => window.location.reload(), 2000);
+    // setTimeout(() => window.location.reload(), 2000);
     notify_err("Nous sommes désolé, le service est indisponible.");
   }
 };
@@ -158,6 +159,7 @@ export const columns: ColumnDef<Player>[] = [
   { accessorKey: "prenom", header: "Prénom", cell: ({ row }) => <div className="capitalize">{row.getValue("prenom")}</div> },
   { accessorKey: "classe", header: "Classe", cell: ({ row }) => <div className="capitalize">{row.getValue("classe")}</div> },
   { accessorKey: "date", header: "Date de la session", cell: ({ row }) => <div className="capitalize">{row.getValue("date")}</div> },
+  { accessorKey: "table_name", header: "Crénau de l'élève", cell: ({ row }) => <div className="capitalize">{row.getValue("table_name")}</div> },
   {
     id: "actions",
     cell: ({ row }) => {

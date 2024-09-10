@@ -45,19 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $Email = $input['Email'] ?? 'null';
-    $Pseudo = $input['Pseudo'] ?? 'null';
-    $Password = $input['Password'] ?? 'null';
-
+    $Email = $input['Email'];
+    $Pseudo = $input['Pseudo'];
+    $Password = $input['Password'];
+    $Classe = $input['Classe'];
     // Vérification et validation
     $result = validateAndCheckUnique($conn, $Email, $Pseudo, $Password);
 
     if ($result === true) {
         // Les données sont valides et uniques, vous pouvez les insérer dans la base de données
-        $stmt = $conn->prepare("INSERT INTO users (email, pseudo, pwd) VALUES (:email, :pseudo, :password)");
+        $stmt = $conn->prepare("INSERT INTO users (email, pseudo, classe, pwd) VALUES (:email, :pseudo, :classe, :password)");
         $stmt->execute([
             'email' => $Email,
             'pseudo' => $Pseudo,
+            'classe' => $Classe,
             'password' => password_hash($Password, PASSWORD_DEFAULT) // Hash du mot de passe
         ]);
         echo json_encode(array('success' => 'Utilisateur enregistré avec succès.'));

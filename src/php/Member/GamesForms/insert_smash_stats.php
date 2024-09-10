@@ -3,7 +3,7 @@
 session_start();
 
 // Configurer les en-têtes CORS
-header("Access-Control-Allow-Origin: http://localhost:5173"); // Remplacez par le domaine de votre front-end
+header("Access-Control-Allow-Origin: *"); // Remplacez par le domaine de votre front-end
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
