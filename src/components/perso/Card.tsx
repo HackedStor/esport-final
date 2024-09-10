@@ -20,6 +20,11 @@ const CustomCard: React.FC<CardProps> = ({
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  const formatDescription = (text: string) => {
+    return text.replace(/\n/g, "<br />");
+  }
+
   return (
     <div className="news-card">
       <img src={image} alt={title} className="news-card__image" />
@@ -32,7 +37,7 @@ const CustomCard: React.FC<CardProps> = ({
           {title}
         </h2>
         <p className="news-card__date">{date}</p>
-        <p className="news-card__description">{description}</p>
+        <p className="news-card__description" dangerouslySetInnerHTML={{ __html: formatDescription(description)}}></p>
       </div>
       <div className="news-card__footer">
         <a onClick={toggleModal} className="news-card__link">
@@ -45,7 +50,7 @@ const CustomCard: React.FC<CardProps> = ({
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h2 className="modalH2">{title}</h2>
             <p className="modalP">{date}</p>
-            <p className="modalText">{description}</p>
+            <p className="modalText"  dangerouslySetInnerHTML={{ __html: formatDescription(description)}}></p>
             <a href={link} className="modalLink">
               Lien externe: {link}
             </a>
