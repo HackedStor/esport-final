@@ -19,7 +19,7 @@ type FormDataState = {
   date: string;
   image: File | null;
 };
-
+ 
 const AddNewsForm: React.FC = () => {
   const [formData, setFormData] = useState<FormDataState>({
     image: null,
@@ -96,7 +96,7 @@ const AddNewsForm: React.FC = () => {
   const notify_err = (text: Renderable | ValueFunction<Renderable, Toast>) =>
     toast.error(text);
   return (
-    <div>
+    <div className="news-form-section">
       <form
         onSubmit={handleSubmit}
         className="news-form form_container w-1/3 h-min"

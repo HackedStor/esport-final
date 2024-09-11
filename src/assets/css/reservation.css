@@ -166,15 +166,8 @@ textarea:focus ~ .input-border {
 /* Style pour les écrans de 1160px ou moins */
 @media (max-width: 1160px) {
   .cus_container_res {
-    display: flex;
+    margin: 0;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 6vh;
-    padding: 15px;
-    margin: 30px;
-    border: 1px solid #3f3c3c;
-    border-radius: 8px;
   }
 
   .cus_container {
@@ -208,8 +201,7 @@ textarea:focus ~ .input-border {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-width: 0;
-    margin: 0;
+    width: 100%;
   }
 }
 
