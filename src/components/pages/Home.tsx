@@ -4,6 +4,7 @@ import ButtonCus from "../perso/Button";
 import Card from "../perso/Card";
 import useDevToolsProtection from "../../Hooks/devToolsBlocker";
 import { GameList } from "../perso/gameList";
+import MobilePopup from "../perso/mobilePopup";
 
 interface NewsItem {
   image: string;
@@ -54,6 +55,7 @@ function Home() {
 
   return (
     <>
+      <MobilePopup />
       <div className="hero">
         <div className="card">
           <h1 className="title-1 font-bold">

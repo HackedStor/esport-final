@@ -213,3 +213,57 @@
     margin: 10px;
   }
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond noir avec opacité */
+  z-index: 999; /* En-dessous du pop-up mais au-dessus du reste */
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color:#2b2b2b;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Toujours être au-dessus du reste */
+  width: 80%; /* Pour être responsive sur mobile */
+  max-width: 400px;
+  text-align: center;
+}
+
+.popup p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.popup h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+.popup button {
+  background-color: #0d0d0d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: #1a1a1a;
+}
+
+.popup button:focus {
+  outline: none;
+}
