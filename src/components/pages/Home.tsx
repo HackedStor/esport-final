@@ -23,7 +23,7 @@ function Home() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("http://esport/src/php/getNews.php");
+        const response = await fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/getNews.php");
         if (!response.ok) {
           throw new Error("Échec de la recherche de nouvelles");
         }

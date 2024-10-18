@@ -32,7 +32,7 @@ export function AreaChartStepValo() {
 
   useEffect(() => {
     // Appel à l'API PHP pour récupérer les données
-    fetch("http://esport/src/php/getStats/getValoStats.php")
+    fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/getStats/getValoStats.php")
       .then((response) => response.json())
       .then((data) => setChartData(data))
       .catch((error) => console.error("Erreur lors du fetch des données:", error));

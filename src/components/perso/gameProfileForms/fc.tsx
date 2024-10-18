@@ -28,7 +28,7 @@ const FcCard: React.FC = () => {
       const email = localStorage.getItem("email");
       try {
         const response = await fetch(
-          "http://esport/src/php/Member/getUserData.php",
+          "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/getUserData.php",
           {
             method: "POST",
             headers: {
@@ -69,7 +69,7 @@ const FcCard: React.FC = () => {
 
     try {
       const response = await fetch(
-        "http://esport/src/php/Member/GamesForms/insert_fc24_stats.php",
+        "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/GamesForms/insert_fc24_stats.php",
         {
           method: "POST",
           headers: {

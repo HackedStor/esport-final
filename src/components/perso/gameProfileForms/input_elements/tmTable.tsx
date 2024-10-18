@@ -100,7 +100,7 @@ export function TmTable() {
   React.useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        "http://esport/src/php/GetStats/getTmStats.php"
+        "http://www.lycee-ferry-versailles.fr:5173/src/php/GetStats/getTmStats.php"
       );
       const result = await response.json();
       setData(result);

@@ -63,7 +63,7 @@ const AddNewsForm: React.FC = () => {
     }
 
     try {
-      const response = await fetch("http://esport/src/php/Member/addNews.php", {
+      const response = await fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/Member/addNews.php", {
         method: "POST",
         body: form,
       });

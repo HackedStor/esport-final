@@ -100,7 +100,7 @@ export function MkTable() {
   React.useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        "http://esport/src/php/GetStats/getMkStats.php"
+        "http://www.lycee-ferry-versailles.fr:5173/src/php/GetStats/getMkStats.php"
       );
       const result = await response.json();
       setData(result);

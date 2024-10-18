@@ -79,7 +79,7 @@ const FormAuth: React.FC = () => {
           className="form_container"
           method="post"
           onSubmit={(e) =>
-            handleSubmit(e, "http://esport/src/php/Auth/register.php")
+            handleSubmit(e, "http://www.lycee-ferry-versailles.fr:5173/src/php/Auth/register.php")
           }
         >
           <h1 className="text-4xl my-5 register-button">Inscription</h1>
@@ -123,7 +123,7 @@ const FormAuth: React.FC = () => {
           className="form_container"
           method="post"
           onSubmit={(e) =>
-            handleSubmit(e, "http://esport/src/php/Auth/login.php")
+            handleSubmit(e, "http://www.lycee-ferry-versailles.fr:5173/src/php/Auth/login.php")
           }
         >
           <h1 className="text-4xl my-5 login-button">Connexion</h1>

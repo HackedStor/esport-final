@@ -34,7 +34,7 @@ export function TableDemo() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "http://esport/src/php/getNewsFromAdmin.php"
+          "http://www.lycee-ferry-versailles.fr:5173/src/php/getNewsFromAdmin.php"
         );
         if (!response.ok) {
           throw new Error("Échec de la recherche de nouvelles");
@@ -61,7 +61,7 @@ export function TableDemo() {
   const handleDelete = async (id: number) => {
     try {
       const response = await fetch(
-        "http://esport/src/php/Member/deleteNews.php",
+        "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/deleteNews.php",
         {
           method: "POST",
           headers: {
@@ -86,7 +86,7 @@ export function TableDemo() {
   const handleVisibilityChange = async (id: number, newVisibility: boolean) => {
     try {
       const response = await fetch(
-        "http://esport/src/php/Member/changeNewsVisibility.php",
+        "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/changeNewsVisibility.php",
         {
           method: "POST",
           headers: {

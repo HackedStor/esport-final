@@ -60,7 +60,7 @@ const handleBlackLisUser = async (userId :number) => {
   alert("Attention cette action est irreversible voulez vous vraiment inscrire l'utilisateur sur la liste noir ? Si c'est le cas alors merci de lui envoyer un mail pour le prévenir")
   try {
     const response = await fetch(
-      "http://esport/src/php/Member/BlackListUser.php",
+      "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/BlackListUser.php",
       {
         method: "POST",
         headers: {
@@ -94,7 +94,7 @@ const updatePlayerStatus = async (userId: number, status: string) => {
   };
 
   try {
-    const response = await fetch(`http://esport/src/php/call/${endpointMap[status]}`, {
+    const response = await fetch(`http://www.lycee-ferry-versailles.fr:5173/src/php/call/${endpointMap[status]}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +119,7 @@ const updatePlayerStatus = async (userId: number, status: string) => {
 // Fonction pour générer le CSV
 const generateCSV = async () => {
   try {
-    const response = await fetch("http://esport/src/php/call/generate_csv.php");
+    const response = await fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/call/generate_csv.php");
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -139,7 +139,7 @@ const generateCSV = async () => {
 
 const attendanceFinish = async () => {
   try {
-    const response = await fetch("http://esport/src/php/call/attendanceFinish.php");
+    const response = await fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/call/attendanceFinish.php");
     const data = await response.json();
     if (data.success) {
       setTimeout(() => window.location.reload(), 2000);
@@ -220,7 +220,7 @@ export function DataTableDemo() {
 
   React.useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://esport/src/php/Member/getPlayerNextSession.php");
+      const response = await fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/Member/getPlayerNextSession.php");
       const result = await response.json();
       setData(result);
       console.log("Données récupérées :", result);

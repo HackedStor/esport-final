@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
   
       try {
         const response = await fetch(
-          "http://esport/src/php/Member/getUserData.php",
+          "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/getUserData.php",
           {
             method: "POST",
             headers: {
