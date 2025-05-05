@@ -25,7 +25,7 @@ export function AreaChartStepSupSmashBros() {
 
      useEffect(() => {
           // Appel à l'API PHP pour récupérer les données
-          fetch("/php/getStats/getSmashStats.php")
+          fetch("/php/GetStats/getSmashStats.php")
                .then((response) => response.json())
                .then((data) => setChartData(data))
                .catch((error) =>

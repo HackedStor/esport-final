@@ -43,6 +43,9 @@ const agents = [
   { name: "Deadlock", class: "sentinelle" },
   { name: "Iso", class: "duelliste" },
   { name: "Clove", class: "controlleur" },
+  { name: "Vyse", class: "sentinelle" },
+  { name: "Tejo", class: "initiateur" },
+  { name: "Waylay", class: "duelliste" },
 ];
 
 export function ValoAgents({ onAgentChange }: ValoAgentsProps) {

@@ -10,7 +10,7 @@
 body {
   margin: 0;
   font-family: "Inclusive Sans", sans-serif;
-  background-color: #212121;
+  background-color: #0D1117;
   color: white;
 }
 
@@ -27,7 +27,7 @@ body {
   align-items: center;
   gap: 6vh;
   padding: 15px;
-  border: 1px solid #3f3c3c;
+  border: 1px solid #21262D;
   border-radius: 8px;
 }
 
@@ -94,7 +94,7 @@ body {
   transition: 0.4s;
 }
 .option {
-  background-color: #212121;
+  background-color: #0D1117;
 }
 /* Hover on Input */
 input:hover {
@@ -129,7 +129,7 @@ textarea:focus ~ .input-border {
 }
 .submit {
   padding: 6px 15px;
-  background-color: #212121;
+  background-color: #0D1117;
   color: white;
   font-weight: 900;
   font-size: 15px;
@@ -139,7 +139,7 @@ textarea:focus ~ .input-border {
   margin-top: 20px;
 }
 .submit:hover {
-  background-color: #3f3c3c;
+  background-color: #161B22;
 }
 
 /* Style pour les écrans de 800px ou moins */
@@ -206,6 +206,9 @@ textarea:focus ~ .input-border {
   }
   .submit {
     width: 100%;
+  }
+  .AuthSection {
+    padding-top: 155px;
   }
 }
 

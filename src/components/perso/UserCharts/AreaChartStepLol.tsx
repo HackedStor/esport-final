@@ -32,7 +32,7 @@ export function AreaChartStepLol() {
 
      useEffect(() => {
           // Appel à l'API PHP pour récupérer les données
-          fetch("/php/getStats/getLolStats.php")
+          fetch("/php/GetStats/getLolStats.php")
                .then((response) => response.json())
                .then((data) => setChartData(data))
                .catch((error) =>

@@ -31,7 +31,7 @@ export function AreaChartStepFC24() {
      const [chartData, setChartData] = useState([]);
      useEffect(() => {
           // Appel à l'API PHP pour récupérer les données
-          fetch("/php/getStats/getfc24Stats.php")
+          fetch("/php/GetStats/getfc24Stats.php")
                .then((response) => response.json())
                .then((data) => setChartData(data))
                .catch((error) =>

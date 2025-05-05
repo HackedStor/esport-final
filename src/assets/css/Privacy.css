@@ -1,0 +1,38 @@
+.privacy-container {
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-top: 100px;
+}
+
+.privacy-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.privacy-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.privacy-container p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.privacy-container ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+}
+
+.privacy-container ul li {
+    margin-bottom: 0.5rem;
+}
+
+.separator {
+    margin: 2rem 0;
+    border-top: 1px solid #21262d;
+}

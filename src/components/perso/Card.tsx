@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import "../../assets/css/Actu.css";
 
 // Définition des types pour les props du composant Card
 interface CardProps {
-  image: string; // URL de l'image
-  title: string; // Titre de la carte
-  description: string; // Description du contenu
-  link: string; // URL vers l'article complet
-  date: string; // Date de publication
+  image: string;
+  title: string;
+  description: string; 
+  link: string;
+  date: string;
 }
 
 const CustomCard: React.FC<CardProps> = ({

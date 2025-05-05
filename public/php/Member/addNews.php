@@ -17,12 +17,12 @@ try {
         $newFileName = uniqid('image_', true) . '.' . $fileExtension;
 
         // Chemin de destination
-        $uploadFileDir = '../../actus/';
+        $uploadFileDir = $_SERVER['DOCUMENT_ROOT'] . '/actus/';
         $dest_path = $uploadFileDir . $newFileName;
 
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
             // Chemin relatif à partir de la racine du projet frontend
-            $imagePath = '/src/actus/' . $newFileName;
+            $imagePath = '/actus/' . $newFileName;
 
             $title = $_POST['title'];
             $description = $_POST['description'];

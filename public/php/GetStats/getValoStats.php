@@ -29,7 +29,7 @@ try {
         list($kills, $assists, $deaths) = explode('/', $row['kda']);
 
         // Calcul du KDA
-        $kda = ($kills * 2 + $assists) / $deaths;
+        $kda = ($kills + $assists) / $deaths;
         // $kda = $row['kda'];
 
         // Calcul du winrate

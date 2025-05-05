@@ -318,11 +318,11 @@ export function DataTableDemo() {
         </div>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <Button variant="outline" onClick={generateCSV}>
+        <Button variant="outline" onClick={generateCSV} className="TableBtn">
           <FaFileExport className="mr-2 h-4 w-4 r" />
           Exporter CSV
         </Button>
-        <Button variant="outline" onClick={attendanceFinish}>
+        <Button variant="outline" onClick={attendanceFinish} className="TableBtn">
           <FaCheck className="mr-2 h-4 w-4" />
           Appel effectué
         </Button>

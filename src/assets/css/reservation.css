@@ -10,7 +10,7 @@
 body {
   margin: 0;
   font-family: "Inclusive Sans", sans-serif;
-  background-color: #212121;
+  background-color: #0D1117;
   color: white;
 }
 
@@ -115,7 +115,7 @@ body {
   transition: 0.4s;
 }
 .option {
-  background-color: #212121;
+  background-color: #0D1117;
 }
 /* Hover on Input */
 input:hover {
@@ -150,7 +150,7 @@ textarea:focus ~ .input-border {
 }
 .submit {
   padding: 6px 15px;
-  background-color: #212121;
+  background-color: #0D1117;
   color: white;
   font-weight: 900;
   font-size: 15px;

@@ -6,7 +6,9 @@ import Logout from "./admin/Logout";
 import UserAuth from "./UserAuth";
 import PrivateRoute from "../perso/PrivateRoute";
 import Home from "./Home";
+import Actu from "./Actu";
 import Actualites from "./admin/NewsPage.tsx";
+import Privacy from "./Privacy";
 
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -28,12 +30,19 @@ const AppContent: React.FC = () => {
                 S'authentifier
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/actu" className="nav-link">
+                Actualités
+              </Link>
+            </li>
           </ul>
         </nav>
       )}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/actu" element={<Actu />} />
         <Route path="/auth" element={<UserAuth />} />
+        <Route path='/privacy' element={<Privacy />} />
         <Route
           path="/dashboard"
           element={
