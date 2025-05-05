@@ -17,7 +17,7 @@ const AdminDashboard: React.FC = () => {
       const email = localStorage.getItem("email");
       try {
         const response = await fetch(
-          "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/getUserData.php",
+          "/php/Member/getUserData.php",
           {
             method: "POST",
             headers: {

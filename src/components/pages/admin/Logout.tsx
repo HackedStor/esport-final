@@ -7,7 +7,7 @@ const Logout: React.FC = () => {
   useEffect(() => {
     const performLogout = async () => {
       try {
-        const response = await fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/Auth/logout.php", {
+        const response = await fetch("/php/Auth/logout.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

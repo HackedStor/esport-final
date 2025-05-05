@@ -2,10 +2,8 @@ import React from "react";
 import { slide as Menu } from "react-burger-menu";
 import AddNewsForm from "../../perso/NewsFormAdmin";
 import "../../../assets/css/Dashboard.css";
-import useDevToolsProtection from "../../../Hooks/devToolsBlocker";
 
 const Actualites: React.FC = () => {
-  useDevToolsProtection();
   return (
     <div className="dashboard">
       <Menu width={280}>

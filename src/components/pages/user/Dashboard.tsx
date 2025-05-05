@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import TitleInscription from "../../perso/TitleInscription";
 import FormReservation from "../../perso/FormReservation";
 import { slide as Menu } from "react-burger-menu";
-import useDevToolsProtection from "../../../Hooks/devToolsBlocker";
 
 import {
   Card,
@@ -24,7 +23,6 @@ import "../../../assets/css/Dashboard.css";
 import "../../../assets/css/reservation.css";
 
 const Dashboard: React.FC = () => {
-  useDevToolsProtection();
   const [pseudo, setPseudo] = useState<string>("");
 
   useEffect(() => {
@@ -33,7 +31,7 @@ const Dashboard: React.FC = () => {
   
       try {
         const response = await fetch(
-          "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/getUserData.php",
+          "/php/Member/getUserData.php",
           {
             method: "POST",
             headers: {

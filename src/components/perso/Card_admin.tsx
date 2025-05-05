@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({
 
     try {
       const response = await fetch(
-        "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/deleteNews.php",
+        "/php/Member/deleteNews.php",
         {
           method: "POST",
           headers: {
@@ -56,7 +56,7 @@ const Card: React.FC<CardProps> = ({
 
     try {
       const response = await fetch(
-        "http://www.lycee-ferry-versailles.fr:5173/src/php/Member/changeNewsVisibility.php",
+        "/php/Member/changeNewsVisibility.php",
         {
           method: "POST",
           headers: {

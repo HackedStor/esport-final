@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "../../assets/css/Home.css";
 import ButtonCus from "../perso/Button";
 import Card from "../perso/Card";
-import useDevToolsProtection from "../../Hooks/devToolsBlocker";
 import { GameList } from "../perso/gameList";
 import MobilePopup from "../perso/mobilePopup";
 
@@ -15,7 +14,6 @@ interface NewsItem {
 }
 
 function Home() {
-  useDevToolsProtection();
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +21,7 @@ function Home() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("http://www.lycee-ferry-versailles.fr:5173/src/php/getNews.php");
+        const response = await fetch("/php/getNews.php");
         if (!response.ok) {
           throw new Error("Échec de la recherche de nouvelles");
         }

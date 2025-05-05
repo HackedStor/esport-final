@@ -7,10 +7,8 @@ import UserAuth from "./UserAuth";
 import PrivateRoute from "../perso/PrivateRoute";
 import Home from "./Home";
 import Actualites from "./admin/NewsPage.tsx";
-import useDevToolsProtection from "../../Hooks/devToolsBlocker.tsx";
 
 const AppContent: React.FC = () => {
-  useDevToolsProtection();
   const location = useLocation();
   const isDashboard = location.pathname.startsWith("/dashboard");
   const isAdminDashboard = location.pathname.startsWith("/admin/dashboard");
